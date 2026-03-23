@@ -4,69 +4,241 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Portal de Búsquedas · deCampoaCampo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #F6FAFD; font-family: Arial, sans-serif; }
-    .wrap { max-width: 420px; margin: 0 auto; padding: 40px 24px; text-align: center; }
-    .logo { height: 48px; margin-bottom: 32px; }
-    .alert { background: #FFF3CD; border: 1px solid #FBBF24; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
-    .alert__icon { font-size: 32px; margin-bottom: 8px; }
-    .alert__title { font-size: 16px; font-weight: 700; color: #92400E; margin-bottom: 6px; }
-    .alert__text { font-size: 14px; color: #78350F; }
-    .steps { background: #fff; border: 1px solid #DBEAFE; border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: left; }
-    .steps__title { font-size: 14px; font-weight: 700; color: #1E3A5F; margin-bottom: 14px; text-align: center; }
-    .step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
-    .step:last-child { margin-bottom: 0; }
-    .step__num { min-width: 28px; height: 28px; background: #3179A7; border-radius: 50%; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
-    .step__text { font-size: 14px; color: #374151; line-height: 1.5; padding-top: 4px; }
-    .btn { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
-    .btn--blue { background: #3179A7; color: #fff; }
-    .btn--green { background: #16A34A; color: #fff; }
-    .hint { font-size: 12px; color: #9CA3AF; margin-top: 16px; }
-    .loader { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-    .spinner { width: 40px; height: 40px; border: 3px solid #E0E8EF; border-top-color: #3179A7; border-radius: 50%; animation: spin 1s linear infinite; }
-    .loader__text { margin-top: 16px; color: #3179A7; font-size: 14px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Lato', 'Segoe UI', sans-serif;
+      background: #F6FAFD;
+      color: #333333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    .header {
+      background: #3179A7;
+      padding: 12px 24px;
+      box-shadow: 0 4px 12px rgba(49,121,167,0.12);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header img {
+      height: 36px;
+    }
+    .header__sep {
+      color: rgba(255,255,255,0.4);
+      font-size: 20px;
+      font-weight: 300;
+    }
+    .header__subtitle {
+      color: rgba(255,255,255,0.92);
+      font-size: 14px;
+      font-family: 'Merriweather', serif;
+      font-weight: 300;
+    }
+
+    /* MAIN */
+    .main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(49,121,167,0.12);
+      max-width: 400px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .card__banner {
+      background: linear-gradient(135deg, #3179A7 0%, #266489 100%);
+      padding: 28px 28px 24px;
+      text-align: center;
+    }
+    .card__banner svg {
+      width: 48px;
+      height: 48px;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 12px;
+    }
+    .card__banner h1 {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .card__banner p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+
+    .card__body {
+      padding: 24px 28px 28px;
+    }
+
+    .card__body h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #3179A7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .steps { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .step__num {
+      min-width: 30px;
+      height: 30px;
+      background: #EBF5FB;
+      border: 2px solid #9EDAF3;
+      border-radius: 50%;
+      color: #3179A7;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step__text {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.5;
+      padding-top: 4px;
+    }
+    .step__text strong { color: #333; }
+
+    .divider {
+      height: 1px;
+      background: #E0E8EF;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 200ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn--primary {
+      background: #3179A7;
+      color: #fff;
+    }
+    .btn--primary:hover { background: #266489; }
+    .btn--success { background: #28a745; color: #fff; }
+
+    .hint {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      margin-top: 12px;
+    }
+
+    /* LOADER */
+    .loader {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #E0E8EF;
+      border-top-color: #3179A7;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    .loader p { color: #3179A7; font-size: 14px; }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
 
-  <!-- Pantalla de Instagram -->
-  <div id="igScreen" style="display:none;">
-    <div class="wrap">
-      <img src="https://lh3.googleusercontent.com/d/19iRaqnI160hBqBt3esByQ3-ybd9fAqCc" alt="deCampoaCampo" class="logo">
-      <div class="alert">
-        <div class="alert__icon">⚠️</div>
-        <p class="alert__title">Este link no puede abrirse desde Instagram</p>
-        <p class="alert__text">El navegador interno de Instagram bloquea este tipo de aplicaciones.</p>
+  <header class="header">
+    <img src="https://lh3.googleusercontent.com/d/19iRaqnI160hBqBt3esByQ3-ybd9fAqCc" alt="deCampoaCampo">
+    <span class="header__sep">|</span>
+    <span class="header__subtitle">Portal de búsquedas</span>
+  </header>
+
+  <!-- Pantalla Instagram -->
+  <div id="igScreen" style="display:none;" class="main">
+    <div class="card">
+      <div class="card__banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <h1>Abrí el portal en tu navegador</h1>
+        <p>Instagram no permite abrir este tipo de aplicaciones directamente.</p>
       </div>
-      <div class="steps">
-        <p class="steps__title">Seguí estos pasos para verlo correctamente:</p>
-        <div class="step">
-          <div class="step__num">1</div>
-          <p class="step__text">Tocá los <strong>tres puntos ···</strong> o el ícono <strong>⋮</strong> en la esquina superior derecha de la pantalla</p>
+      <div class="card__body">
+        <h2>Cómo abrirlo</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step__num">1</div>
+            <p class="step__text">Tocá los <strong>tres puntos ···</strong> o <strong>⋮</strong> arriba a la derecha</p>
+          </div>
+          <div class="step">
+            <div class="step__num">2</div>
+            <p class="step__text" id="stepTwo">Seleccioná <strong>"Abrir en navegador externo"</strong></p>
+          </div>
+          <div class="step">
+            <div class="step__num">3</div>
+            <p class="step__text">¡El portal cargará correctamente!</p>
+          </div>
         </div>
-        <div class="step">
-          <div class="step__num">2</div>
-          <p class="step__text" id="stepTwo">Seleccioná <strong>"Abrir en navegador externo"</strong> o <strong>"Abrir en Chrome / Safari"</strong></p>
-        </div>
-        <div class="step">
-          <div class="step__num">3</div>
-          <p class="step__text">¡Listo! El portal de búsquedas cargará correctamente</p>
-        </div>
+        <div class="divider"></div>
+        <button id="copyBtn" class="btn btn--primary" onclick="copyLink()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          Copiar link para abrir manualmente
+        </button>
+        <p class="hint">Pegá el link en Chrome o Safari</p>
       </div>
-      <button id="copyBtn" class="btn btn--blue" onclick="copyLink()">
-        Copiar link para abrir manualmente
-      </button>
-      <p class="hint">Pegá el link en Chrome, Safari o cualquier otro navegador</p>
     </div>
   </div>
 
-  <!-- Loader de redirección -->
-  <div id="redirectScreen" style="display:none;">
+  <!-- Loader redirección -->
+  <div id="redirectScreen" style="display:none;" class="main">
     <div class="loader">
       <div class="spinner"></div>
-      <p class="loader__text">Redirigiendo al portal...</p>
+      <p>Redirigiendo al portal...</p>
     </div>
   </div>
 
@@ -77,15 +249,14 @@
     var isInstagram = ua.indexOf('Instagram') > -1;
 
     if (isInstagram) {
-      document.getElementById('igScreen').style.display = 'block';
-      // Personalizar paso 2 según iOS o Android
+      document.getElementById('igScreen').style.display = 'flex';
       if (/iphone|ipad|ipod/i.test(ua)) {
         document.getElementById('stepTwo').innerHTML = 'Seleccioná <strong>"Abrir en Safari"</strong>';
       } else {
         document.getElementById('stepTwo').innerHTML = 'Seleccioná <strong>"Abrir en Chrome"</strong> o <strong>"Abrir en navegador externo"</strong>';
       }
     } else {
-      document.getElementById('redirectScreen').style.display = 'block';
+      document.getElementById('redirectScreen').style.display = 'flex';
       window.location.replace(APP_URL);
     }
 
@@ -93,8 +264,8 @@
       var btn = document.getElementById('copyBtn');
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(APP_URL).then(function() {
-          btn.textContent = '¡Link copiado!';
-          btn.className = 'btn btn--green';
+          btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> ¡Link copiado!';
+          btn.className = 'btn btn--success';
         });
       } else {
         var ta = document.createElement('textarea');
@@ -105,8 +276,8 @@
         ta.select();
         document.execCommand('copy');
         document.body.removeChild(ta);
-        btn.textContent = '¡Link copiado!';
-        btn.className = 'btn btn--green';
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> ¡Link copiado!';
+        btn.className = 'btn btn--success';
       }
     }
   </script>
