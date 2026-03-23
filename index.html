@@ -1,683 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <base target="_top">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1Gl7J9z_55Ct3d1qVatqe9usD3_9Hc8DF">
-  <title>Portal de Búsquedas</title>
-
-  <!-- Preconectar a Google Fonts para carga más rápida -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-
-  <?!= include('styles'); ?>
+  <title>Portal de Búsquedas · deCampoaCampo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F6FAFD; font-family: Arial, sans-serif; }
+    .wrap { max-width: 420px; margin: 0 auto; padding: 40px 24px; text-align: center; }
+    .logo { height: 48px; margin-bottom: 32px; }
+    .alert { background: #FFF3CD; border: 1px solid #FBBF24; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+    .alert__icon { font-size: 32px; margin-bottom: 8px; }
+    .alert__title { font-size: 16px; font-weight: 700; color: #92400E; margin-bottom: 6px; }
+    .alert__text { font-size: 14px; color: #78350F; }
+    .steps { background: #fff; border: 1px solid #DBEAFE; border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: left; }
+    .steps__title { font-size: 14px; font-weight: 700; color: #1E3A5F; margin-bottom: 14px; text-align: center; }
+    .step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+    .step:last-child { margin-bottom: 0; }
+    .step__num { min-width: 28px; height: 28px; background: #3179A7; border-radius: 50%; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .step__text { font-size: 14px; color: #374151; line-height: 1.5; padding-top: 4px; }
+    .btn { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+    .btn--blue { background: #3179A7; color: #fff; }
+    .btn--green { background: #16A34A; color: #fff; }
+    .hint { font-size: 12px; color: #9CA3AF; margin-top: 16px; }
+    .loader { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
+    .spinner { width: 40px; height: 40px; border: 3px solid #E0E8EF; border-top-color: #3179A7; border-radius: 50%; animation: spin 1s linear infinite; }
+    .loader__text { margin-top: 16px; color: #3179A7; font-size: 14px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
-
 <body>
 
-  <!-- ==================== INSTAGRAM IN-APP BROWSER BLOCKER ==================== -->
-  <div id="igBrowserWarning" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#F6FAFD;z-index:99999;overflow-y:auto;font-family:Arial,sans-serif;">
-    <div style="max-width:420px;margin:0 auto;padding:40px 24px;text-align:center;">
-      <img src="https://lh3.googleusercontent.com/d/19iRaqnI160hBqBt3esByQ3-ybd9fAqCc" alt="deCampoaCampo" style="height:48px;margin-bottom:32px;">
-      <div style="background:#FFF3CD;border:1px solid #FBBF24;border-radius:12px;padding:20px;margin-bottom:24px;">
-        <div style="font-size:32px;margin-bottom:8px;">⚠️</div>
-        <p style="font-size:16px;font-weight:700;color:#92400E;margin:0 0 6px;">El portal no puede abrirse desde Instagram</p>
-        <p style="font-size:14px;color:#78350F;margin:0;">El navegador interno de Instagram bloquea este tipo de aplicaciones.</p>
+  <!-- Pantalla de Instagram -->
+  <div id="igScreen" style="display:none;">
+    <div class="wrap">
+      <img src="https://lh3.googleusercontent.com/d/19iRaqnI160hBqBt3esByQ3-ybd9fAqCc" alt="deCampoaCampo" class="logo">
+      <div class="alert">
+        <div class="alert__icon">⚠️</div>
+        <p class="alert__title">Este link no puede abrirse desde Instagram</p>
+        <p class="alert__text">El navegador interno de Instagram bloquea este tipo de aplicaciones.</p>
       </div>
-      <div style="background:#fff;border:1px solid #DBEAFE;border-radius:12px;padding:20px;margin-bottom:24px;text-align:left;">
-        <p style="font-size:14px;font-weight:700;color:#1E3A5F;margin:0 0 14px;text-align:center;">Seguí estos pasos para abrirlo correctamente:</p>
-        <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
-          <div style="min-width:28px;height:28px;background:#3179A7;border-radius:50%;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;">1</div>
-          <p style="margin:0;font-size:14px;color:#374151;line-height:1.5;">Tocá los <strong>tres puntos ···</strong> o el ícono <strong>⋮</strong> en la esquina superior derecha</p>
+      <div class="steps">
+        <p class="steps__title">Seguí estos pasos para verlo correctamente:</p>
+        <div class="step">
+          <div class="step__num">1</div>
+          <p class="step__text">Tocá los <strong>tres puntos ···</strong> o el ícono <strong>⋮</strong> en la esquina superior derecha de la pantalla</p>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;">
-          <div style="min-width:28px;height:28px;background:#3179A7;border-radius:50%;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;">2</div>
-          <p style="margin:0;font-size:14px;color:#374151;line-height:1.5;">Seleccioná <strong>"Abrir en navegador externo"</strong> o <strong>"Abrir en Chrome / Safari"</strong></p>
+        <div class="step">
+          <div class="step__num">2</div>
+          <p class="step__text" id="stepTwo">Seleccioná <strong>"Abrir en navegador externo"</strong> o <strong>"Abrir en Chrome / Safari"</strong></p>
         </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;">
-          <div style="min-width:28px;height:28px;background:#3179A7;border-radius:50%;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;">3</div>
-          <p style="margin:0;font-size:14px;color:#374151;line-height:1.5;">¡Listo! El portal cargará correctamente</p>
+        <div class="step">
+          <div class="step__num">3</div>
+          <p class="step__text">¡Listo! El portal de búsquedas cargará correctamente</p>
         </div>
       </div>
-      <button id="igCopyBtn" onclick="igCopyLink()" style="width:100%;padding:14px;background:#3179A7;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;">
+      <button id="copyBtn" class="btn btn--blue" onclick="copyLink()">
         Copiar link para abrir manualmente
       </button>
-      <p style="font-size:12px;color:#9CA3AF;margin-top:16px;">O pegá el link en Chrome, Safari o cualquier otro navegador</p>
+      <p class="hint">Pegá el link en Chrome, Safari o cualquier otro navegador</p>
     </div>
   </div>
+
+  <!-- Loader de redirección -->
+  <div id="redirectScreen" style="display:none;">
+    <div class="loader">
+      <div class="spinner"></div>
+      <p class="loader__text">Redirigiendo al portal...</p>
+    </div>
+  </div>
+
   <script>
-    (function() {
-      var ua = navigator.userAgent || navigator.vendor || window.opera || '';
-      if (ua.indexOf('Instagram') > -1) {
-        document.getElementById('igBrowserWarning').style.display = 'block';
+    var APP_URL = 'https://script.google.com/macros/s/AKfycbxxu4U5ep4D3nlo82O9TGtMYZFSt_5y7fpJ_kT2ASRNxr-vtIhMvuIeSPXFhWpsqi1g2A/exec?utm_source=instagram&utm_medium=social&utm_campaign=portal_busquedas';
+
+    var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+    var isInstagram = ua.indexOf('Instagram') > -1;
+
+    if (isInstagram) {
+      document.getElementById('igScreen').style.display = 'block';
+      // Personalizar paso 2 según iOS o Android
+      if (/iphone|ipad|ipod/i.test(ua)) {
+        document.getElementById('stepTwo').innerHTML = 'Seleccioná <strong>"Abrir en Safari"</strong>';
+      } else {
+        document.getElementById('stepTwo').innerHTML = 'Seleccioná <strong>"Abrir en Chrome"</strong> o <strong>"Abrir en navegador externo"</strong>';
       }
-    })();
-    function igCopyLink() {
-      var url = window.location.href;
+    } else {
+      document.getElementById('redirectScreen').style.display = 'block';
+      window.location.replace(APP_URL);
+    }
+
+    function copyLink() {
+      var btn = document.getElementById('copyBtn');
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(function() {
-          var btn = document.getElementById('igCopyBtn');
+        navigator.clipboard.writeText(APP_URL).then(function() {
           btn.textContent = '¡Link copiado!';
-          btn.style.background = '#16A34A';
+          btn.className = 'btn btn--green';
         });
       } else {
         var ta = document.createElement('textarea');
-        ta.value = url;
+        ta.value = APP_URL;
         ta.style.position = 'fixed';
         ta.style.opacity = '0';
         document.body.appendChild(ta);
         ta.select();
         document.execCommand('copy');
         document.body.removeChild(ta);
-        var btn = document.getElementById('igCopyBtn');
         btn.textContent = '¡Link copiado!';
-        btn.style.background = '#16A34A';
+        btn.className = 'btn btn--green';
       }
     }
   </script>
 
-  <!-- LOADER INICIAL - se muestra instantáneamente -->
-  <div id="initialLoader" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#F6FAFD;display:flex;align-items:center;justify-content:center;z-index:9999;">
-    <div style="text-align:center;">
-      <div style="width:40px;height:40px;border:3px solid #E0E8EF;border-top-color:#3179A7;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto;"></div>
-      <p style="margin-top:16px;color:#3179A7;font-family:Arial,sans-serif;font-size:14px;">Cargando portal...</p>
-    </div>
-    <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
-  </div>
-
-  <!-- ==================== HEADER ==================== -->
-  <header class="header">
-    <div class="container header__container">
-      <div class="header__content">
-        <h1 class="header__brand">
-          <img src="<?!= bannerImages.img_logo ?>" alt="deCampoaCampo" class="brand-logo">
-          <span class="brand-separator">|</span>
-          <span class="brand-subbrand">Portal de búsquedas</span>
-        </h1>
-      </div>
-
-
-    </div>
-  </header>
-
-  <!-- ==================== MAIN CONTENT ==================== -->
-  <main class="main">
-
-    <!-- ==================== BANNER 4 FOTOS CON CARRUSEL ==================== -->
-    <section class="banner-grid">
-      <div class="banner-grid__carousel" id="bannerCarousel">
-        <div class="banner-grid__slides">
-          <!-- Slide 1: 4 fotos -->
-          <div class="banner-grid__slide active">
-            <div class="banner-grid__images">
-              <div class="banner-grid__item">
-                <img src="<?!= bannerImages.img1 ?>" alt="Campo 1">
-              </div>
-              <div class="banner-grid__item">
-                <img src="<?!= bannerImages.img2 ?>" alt="Campo 2">
-              </div>
-              <div class="banner-grid__item">
-                <img src="<?!= bannerImages.img3 ?>" alt="Campo 3">
-              </div>
-              <div class="banner-grid__item">
-                <img src="<?!= bannerImages.img4 ?>" alt="Campo 4">
-              </div>
-            </div>
-          </div>
-          <!-- Slide 2: otras 4 fotos -->
-          <div class="banner-grid__slide">
-            <div class="banner-grid__images">
-              <div class="banner-grid__item">
-                <img src="<?!= bannerImages.img5 ?>" alt="Campo 5">
-              </div>
-              <div class="banner-grid__item">
-                <img src="<?!= bannerImages.img6 ?>" alt="Campo 6">
-              </div>
-              <div class="banner-grid__item">
-                <img src="<?!= bannerImages.img7 ?>" alt="Campo 7">
-              </div>
-              <div class="banner-grid__item">
-                <img src="<?!= bannerImages.img8 ?>" alt="Campo 8">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="banner-grid__overlay">
-        <h2 class="banner-grid__title">Sé parte de nuestro equipo</h2>
-        <p class="banner-grid__subtitle">En 2026 seguimos creciendo y expandiéndonos como el <em>Mercado Ganadero
-            Digital</em> más grande de la región.<br>¿Te sumás?</p>
-      </div>
-      <div class="banner-grid__dots" id="bannerDots">
-        <button class="banner-grid__dot active" data-index="0"></button>
-        <button class="banner-grid__dot" data-index="1"></button>
-      </div>
-    </section>
-
-    <!-- ==================== SPLIT VIEW ==================== -->
-    <div class="split-view">
-
-      <!-- Panel izquierdo: Lista de posiciones -->
-      <div class="split-view__list">
-        <div class="split-view__list-header">
-          <!-- Barra de filtros -->
-          <div class="search-bar">
-            <div class="search-bar__filters">
-              <div class="search-bar__select-wrapper">
-                <svg class="search-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.35-4.35"></path>
-                </svg>
-                <select id="searchPosicion" class="search-bar__select">
-                  <option value="">Todas las posiciones</option>
-                </select>
-              </div>
-              <div class="search-bar__select-wrapper">
-                <svg class="search-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <select id="searchUbicacion" class="search-bar__select">
-                  <option value="">Todas las ubicaciones</option>
-                </select>
-              </div>
-            </div>
-            <div class="search-bar__count">
-              <span id="resultCount">0</span> búsquedas activas
-            </div>
-          </div>
-        </div>
-
-        <div class="split-view__list-content" id="listContent">
-          <!-- Loading state -->
-          <div class="loading" id="loading">
-            <div class="loading__spinner"></div>
-            <p>Cargando búsquedas...</p>
-          </div>
-
-          <!-- Error state -->
-          <div class="error-state" id="errorState" style="display: none;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="8" x2="12" y2="12"></line>
-              <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
-            <p id="errorMessage">Error al cargar los datos</p>
-            <button class="btn btn--primary" onclick="loadData()">Reintentar</button>
-          </div>
-
-          <!-- Lista de posiciones -->
-          <div class="jobs-list" id="jobsList" style="display: none;">
-            <!-- Items dinamicos -->
-          </div>
-
-          <!-- Estado vacio -->
-          <div class="empty-state" id="emptyState" style="display: none;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="12" y1="18" x2="12" y2="12"></line>
-              <line x1="9" y1="15" x2="15" y2="15"></line>
-            </svg>
-            <p>No hay búsquedas activas</p>
-          </div>
-
-          <!-- Sin resultados -->
-          <div class="no-results" id="noResults" style="display: none;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-            <p>No se encontraron resultados</p>
-          </div>
-        </div>
-
-        <!-- Boton Aplicar -->
-        <div class="split-view__list-footer" id="applySection" style="display: none;">
-          <div class="apply-section">
-            <div class="apply-section__info">
-              <span id="selectedCount">0</span> posición(es) seleccionada(s)
-            </div>
-            <button type="button" class="btn btn--success" id="btnAplicar" onclick="openApplyModal()">
-              Aplicar
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel derecho: Detalle de posicion -->
-      <div class="split-view__detail" id="detailPanel">
-        <div class="detail-panel">
-          <div class="detail-panel__empty" id="detailEmpty">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-            <p>Selecciona una posición para ver el detalle</p>
-          </div>
-          <div class="detail-panel__content" id="detailContent" style="display: none;">
-            <div class="detail-panel__header">
-              <div class="detail-panel__header-top">
-                <h2 class="detail-panel__title" id="detailTitle">-</h2>
-                <button type="button" class="btn-share" onclick="shareCurrentJob()" title="Compartir esta posición">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
-                    <circle cx="18" cy="5" r="3"></circle>
-                    <circle cx="6" cy="12" r="3"></circle>
-                    <circle cx="18" cy="19" r="3"></circle>
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                  </svg>
-                  Compartir
-                </button>
-              </div>
-              <span class="detail-panel__location" id="detailLocation">-</span>
-            </div>
-            <div class="detail-panel__meta">
-              <div class="detail-panel__meta-item">
-                <span class="detail-panel__label">Gerencia</span>
-                <span class="detail-panel__value" id="detailGerencia">-</span>
-              </div>
-              <div class="detail-panel__meta-item">
-                <span class="detail-panel__label">Modalidad</span>
-                <span class="detail-panel__value" id="detailModalidad">-</span>
-              </div>
-              <div class="detail-panel__meta-item">
-                <span class="detail-panel__label">Fecha publicación</span>
-                <span class="detail-panel__value" id="detailFechaPublicacion">-</span>
-              </div>
-            </div>
-            <div class="detail-panel__section">
-              <h3 class="detail-panel__section-title">Responsabilidades Principales</h3>
-              <div class="detail-panel__description" id="detailResponsabilidades">
-                -
-              </div>
-            </div>
-            <div class="detail-panel__section">
-              <h3 class="detail-panel__section-title">Perfil Esperado</h3>
-              <div class="detail-panel__description" id="detailPerfilEsperado">
-                -
-              </div>
-            </div>
-            <div class="detail-panel__section">
-              <h3 class="detail-panel__section-title">Desafíos del rol</h3>
-              <div class="detail-panel__description" id="detailDesafios">
-                -
-              </div>
-            </div>
-            <div class="detail-panel__section">
-              <h3 class="detail-panel__section-title">Habilidades Principales</h3>
-              <div class="detail-panel__badges" id="detailHabilidades">
-              </div>
-            </div>
-            <div class="detail-panel__section">
-              <h3 class="detail-panel__section-title">Propuesta de valor - Beneficios</h3>
-              <div class="detail-panel__description" id="detailPropuestaValor">
-                -
-              </div>
-            </div>
-            <div class="detail-panel__actions">
-              <button type="button" class="btn btn--primary" id="detailApplyBtn" onclick="selectCurrentJob()">
-                Seleccionar esta posición
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- ==================== TOAST NOTIFICATIONS ==================== -->
-  <div class="toast-container" id="toastContainer"></div>
-
-  <!-- ==================== MODAL DETALLE JOB (MOBILE) ==================== -->
-  <div id="jobDetailModal" class="modal-overlay">
-    <div class="modal modal--job-detail">
-      <div class="modal__header">
-        <div class="modal__header-info">
-          <h3 id="jobModalTitle" class="modal__title">-</h3>
-          <div class="modal__location-row">
-            <span id="jobModalLocation" class="modal__location">-</span>
-            <button type="button" class="btn-share btn-share--sm" onclick="shareCurrentJob()" title="Compartir">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
-                <circle cx="18" cy="5" r="3"></circle>
-                <circle cx="6" cy="12" r="3"></circle>
-                <circle cx="18" cy="19" r="3"></circle>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-              </svg>
-              Compartir
-            </button>
-          </div>
-        </div>
-        <button type="button" class="modal__close" onclick="closeJobDetailModal()">&times;</button>
-      </div>
-      <div class="modal__body job-modal__body">
-        <div class="job-modal__meta">
-          <div class="job-modal__meta-item">
-            <span class="job-modal__label">Gerencia</span>
-            <span id="jobModalGerencia" class="job-modal__value">-</span>
-          </div>
-          <div class="job-modal__meta-item">
-            <span class="job-modal__label">Modalidad</span>
-            <span id="jobModalModalidad" class="job-modal__value">-</span>
-          </div>
-          <div class="job-modal__meta-item">
-            <span class="job-modal__label">Publicación</span>
-            <span id="jobModalFecha" class="job-modal__value">-</span>
-          </div>
-        </div>
-
-        <div class="job-modal__sections">
-          <div class="job-modal__section">
-            <h4 class="job-modal__section-title">Responsabilidades Principales</h4>
-            <div id="jobModalResponsabilidades" class="job-modal__content">-</div>
-          </div>
-
-          <div class="job-modal__section">
-            <h4 class="job-modal__section-title">Perfil Esperado</h4>
-            <div id="jobModalPerfil" class="job-modal__content">-</div>
-          </div>
-
-          <div class="job-modal__section">
-            <h4 class="job-modal__section-title">Desafíos del Rol</h4>
-            <div id="jobModalDesafios" class="job-modal__content">-</div>
-          </div>
-
-          <div class="job-modal__section">
-            <h4 class="job-modal__section-title">Habilidades Principales</h4>
-            <div id="jobModalHabilidades" class="job-modal__badges"></div>
-          </div>
-
-          <div class="job-modal__section">
-            <h4 class="job-modal__section-title">Propuesta de Valor - Beneficios</h4>
-            <div id="jobModalPropuesta" class="job-modal__content">-</div>
-          </div>
-        </div>
-      </div>
-      <div class="modal__footer">
-        <button type="button" class="btn btn--secondary" onclick="closeJobDetailModal()">Cerrar</button>
-        <button type="button" class="btn btn--primary" onclick="selectJobFromModal()">Seleccionar posición</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== MODAL APLICAR ==================== -->
-  <div id="applyModal" class="modal-overlay">
-    <div class="modal modal--application">
-      <div class="modal__header modal__header--apply">
-        <div class="modal__header-content">
-          <div class="modal__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-          </div>
-          <div>
-            <h3 class="modal__title">Postularme</h3>
-            <p class="modal__subtitle">Completa tus datos para aplicar</p>
-          </div>
-        </div>
-        <button type="button" class="modal__close" onclick="closeApplyModal()">&times;</button>
-      </div>
-      <div class="modal__body modal__body--form">
-        <div class="modal__content-wrapper">
-          <!-- Barra de progreso vertical -->
-          <div class="progress-sidebar">
-            <div class="progress-steps">
-              <div class="progress-line-fill" id="progressLineFill"></div>
-              <div class="progress-step active" data-step="1">
-                <div class="progress-step__indicator">
-                  <span class="progress-step__number">1</span>
-                  <svg class="progress-step__check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <div class="progress-step__content">
-                  <span class="progress-step__title">Posiciones</span>
-                  <span class="progress-step__desc">Seleccionadas</span>
-                </div>
-              </div>
-              <div class="progress-step" data-step="2">
-                <div class="progress-step__indicator">
-                  <span class="progress-step__number">2</span>
-                  <svg class="progress-step__check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <div class="progress-step__content">
-                  <span class="progress-step__title">Datos</span>
-                  <span class="progress-step__desc">Personales</span>
-                </div>
-              </div>
-              <div class="progress-step" data-step="3">
-                <div class="progress-step__indicator">
-                  <span class="progress-step__number">3</span>
-                  <svg class="progress-step__check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <div class="progress-step__content">
-                  <span class="progress-step__title">Contacto</span>
-                  <span class="progress-step__desc">Email y teléfono</span>
-                </div>
-              </div>
-              <div class="progress-step" data-step="4">
-                <div class="progress-step__indicator">
-                  <span class="progress-step__number">4</span>
-                  <svg class="progress-step__check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <div class="progress-step__content">
-                  <span class="progress-step__title">Currículum</span>
-                  <span class="progress-step__desc">Adjuntar CV</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Formulario -->
-          <div class="form-container">
-            <form id="applyForm" class="apply-form">
-              <!-- Posiciones seleccionadas -->
-              <div class="form-section" data-section="1">
-                <div class="form-section__header">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <polyline points="9 11 12 14 22 4"></polyline>
-                  </svg>
-                  <span>Posiciones seleccionadas</span>
-                </div>
-                <div id="selectedJobsList" class="selected-jobs-chips"></div>
-              </div>
-
-              <!-- Datos personales -->
-              <div class="form-section" data-section="2">
-                <div class="form-section__header">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                  <span>Datos personales</span>
-                </div>
-                <div class="form-grid">
-                  <div class="form-group form-group--full">
-                    <label class="form-label" for="applicantName">Nombre completo *</label>
-                    <input type="text" id="applicantName" name="nombre" class="form-input" placeholder="Ej: Juan Pérez"
-                      required>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="applicantAge">Edad *</label>
-                    <input type="number" id="applicantAge" name="edad" class="form-input" min="18" max="99"
-                      placeholder="Ej: 28" required>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="applicantProvince">Provincia *</label>
-                    <select id="applicantProvince" name="provincia" class="form-input form-select" required>
-                      <option value="">Seleccionar...</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="applicantCity">Localidad *</label>
-                    <input type="text" id="applicantCity" name="localidad" class="form-input"
-                      placeholder="Ingrese su localidad" required>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Datos de contacto -->
-              <div class="form-section" data-section="3">
-                <div class="form-section__header">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-                    <path
-                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                    </path>
-                  </svg>
-                  <span>Contacto</span>
-                </div>
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label class="form-label" for="applicantEmail">Email *</label>
-                    <input type="email" id="applicantEmail" name="email" class="form-input"
-                      placeholder="ejemplo@email.com" required>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label" for="applicantPhone">Teléfono *</label>
-                    <input type="tel" id="applicantPhone" name="telefono" class="form-input"
-                      placeholder="Ej: 11 2345-6789" required>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Curriculum -->
-              <div class="form-section" data-section="4">
-                <div class="form-section__header">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="17 8 12 3 7 8"></polyline>
-                    <line x1="12" y1="3" x2="12" y2="15"></line>
-                  </svg>
-                  <span>Currículum Vitae</span>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="applicantCV">Adjuntar CV (PDF, PNG, JPG) *</label>
-                  <div class="file-upload">
-                    <input type="file" id="applicantCV" name="cv" class="file-upload__input" accept=".pdf,.png,.jpg,.jpeg" required>
-                    <label for="applicantCV" class="file-upload__label">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24"
-                        height="24">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                      </svg>
-                      <span class="file-upload__text">Seleccionar archivo (PDF, PNG, JPG)</span>
-                      <span class="file-upload__hint">Máximo 10MB</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Acciones -->
-              <div class="form-actions">
-                <button id="applyModal" type="button" class="btn btn--secondary btn--lg"
-                  onclick="closeApplyModal()">Cancelar</button>
-                <button type="submit" class="btn btn--success btn--lg" id="submitApplyBtn">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                  Enviar postulación
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="footer" id="contact">
-    <div class="footer__container">
-      <div class="footer__grid">
-
-    
-        
-
-        <!-- Columna 3: Contacto con iconos -->
-        <div class="footer__col">
-          <div class="footer__social">
-            <a href="https://ar.linkedin.com/company/decampoacampo-com" target="_blank" class="footer__social-link"
-              title="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="34" height="34">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/decampoacampo" target="_blank" class="footer__social-link"
-              title="Instagram">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="34" height="34">
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-              </svg>
-            </a>
-            <a href="https://www.tiktok.com/@decampoacampo.app" target="_blank" class="footer__social-link" title="TikTok">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="34" height="34">
-                <path
-                  d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-              </svg>
-            </a>
-            <a href="https://decampoacampo.com" target="_blank" class="footer__social-link" title="Sitio Web">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="34" height="34">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                </path>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="footer__bottom">
-        <p class="footer__copyright">&copy;
-          <?= new Date().getFullYear() ?> deCampoaCampo. Todos los derechos reservados.
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- UTM params inyectados desde el servidor -->
-  <script>
-    window.DCAC_UTM_PARAMS = {
-      utm_source: '<?= utmParams.utm_source ?>',
-      utm_medium: '<?= utmParams.utm_medium ?>',
-      utm_campaign: '<?= utmParams.utm_campaign ?>',
-      utm_content: '<?= utmParams.utm_content ?>',
-      utm_term: '<?= utmParams.utm_term ?>'
-    };
-    window.DCAC_INITIAL_JOB = '<?= initialJobId ?>';
-    window.DCAC_WEBAPP_URL = '<?= webAppUrl ?>';
-</script>
-
-  <?!= include('app'); ?>
-
-
 </body>
-
 </html>
