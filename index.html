@@ -763,7 +763,7 @@
         if (trackUrl) {
           fetch(trackUrl, {
             method: 'POST',
-            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify({ action: 'logVisit', payload: payload })
           }).catch(function(e) { console.log('Track error:', e); });
         } else if (typeof google !== 'undefined' && google.script && google.script.run) {
@@ -2469,16 +2469,14 @@
 
       var submitUrl = (window.DCAC_WEBAPP_URL || '').split('?')[0];
       if (submitUrl) {
-        // Hosting externo (GitHub Pages): fetch con no-cors, respuesta opaca
+        // Hosting externo (GitHub Pages): text/plain evita CORS preflight
         fetch(submitUrl, {
           method: 'POST',
-          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify({ action: 'submitApplication', formData: formData })
         })
-        .then(function() {
-          // no-cors = respuesta opaca, asumimos éxito (las alertas de RRHH cubren los fallos)
-          onSubmitSuccess({ success: true });
-        })
+        .then(function(r) { return r.json(); })
+        .then(function(response) { onSubmitSuccess(response); })
         .catch(function(error) { onSubmitError(error); });
       } else if (typeof google !== 'undefined' && google.script && google.script.run) {
         // Fallback GAS nativo
