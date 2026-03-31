@@ -761,11 +761,11 @@
 
         var trackUrl = (window.DCAC_WEBAPP_URL || '').split('?')[0];
         if (trackUrl) {
-          fetch(trackUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain' },
-            body: JSON.stringify({ action: 'logVisit', payload: payload })
-          }).catch(function(e) { console.log('Track error:', e); });
+          // GET request — funciona en todos los webviews incluyendo Instagram iOS
+          var params = Object.keys(payload).map(function(k) {
+            return encodeURIComponent(k) + '=' + encodeURIComponent(payload[k] || '');
+          }).join('&');
+          fetch(trackUrl + '?action=logVisit&' + params).catch(function(e) { console.log('Track error:', e); });
         } else if (typeof google !== 'undefined' && google.script && google.script.run) {
           google.script.run
             .withSuccessHandler(function() { /* ok */ })
