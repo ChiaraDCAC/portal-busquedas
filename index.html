@@ -1,0 +1,2763 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1Gl7J9z_55Ct3d1qVatqe9usD3_9Hc8DF">
+  <title>Portal de Búsquedas</title>
+
+  <!-- Preconectar a Google Fonts para carga más rápida -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ==================== INSTAGRAM WEBVIEW BANNER ==================== -->
+  <div id="igWebviewBanner" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:99999;box-sizing:border-box;background:#1a3a52;color:#fff;padding:14px 16px 12px;font-family:Arial,sans-serif;font-size:13px;line-height:1.5;text-align:center;">
+    <div style="max-width:480px;margin:0 auto;">
+      <strong style="font-size:14px;display:block;margin-bottom:4px;">⚠️ Esta página no funciona dentro de Instagram</strong>
+      Tocá los <strong>⋮</strong> (tres puntos arriba a la derecha) y seleccioná <strong>"Abrir en Safari"</strong> o <strong>"Abrir en Chrome"</strong>.
+    </div>
+  </div>
+  <script>
+    (function() {
+      var ua = navigator.userAgent || '';
+      if (ua.indexOf('Instagram') !== -1) {
+        var banner = document.getElementById('igWebviewBanner');
+        if (banner) {
+          banner.style.display = 'block';
+          document.body.style.paddingTop = '80px';
+        }
+      }
+    })();
+  </script>
+
+  <!-- LOADER INICIAL - se muestra instantáneamente -->
+  <div id="initialLoader" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#F6FAFD;display:flex;align-items:center;justify-content:center;z-index:9999;">
+    <div style="text-align:center;">
+      <div style="width:40px;height:40px;border:3px solid #E0E8EF;border-top-color:#3179A7;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto;"></div>
+      <p style="margin-top:16px;color:#3179A7;font-family:Arial,sans-serif;font-size:14px;">Cargando portal...</p>
+    </div>
+    <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+  </div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__content">
+        <h1 class="header__brand">
+          <img src="https://lh3.googleusercontent.com/d/19iRaqnI160hBqBt3esByQ3-ybd9fAqCc" alt="deCampoaCampo" class="brand-logo">
+          <span class="brand-separator">|</span>
+          <span class="brand-subbrand">Portal de búsquedas</span>
+        </h1>
+      </div>
+
+
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main">
+
+    <!-- ==================== BANNER 4 FOTOS CON CARRUSEL ==================== -->
+    <section class="banner-grid">
+      <div class="banner-grid__carousel" id="bannerCarousel">
+        <div class="banner-grid__slides">
+          <!-- Slide 1: 4 fotos -->
+          <div class="banner-grid__slide active">
+            <div class="banner-grid__images">
+              <div class="banner-grid__item">
+                <img src="https://lh3.googleusercontent.com/d/1iQmB8DMrDhFOhkcRDYKKXHewJJwkuLvR" alt="Campo 1">
+              </div>
+              <div class="banner-grid__item">
+                <img src="https://lh3.googleusercontent.com/d/1NMg1Mxa_XE8EuPZHUXPOwxI-YDUHChYc" alt="Campo 2">
+              </div>
+              <div class="banner-grid__item">
+                <img src="https://lh3.googleusercontent.com/d/1vUtVnRe9jf-NPqHotE1RrclRNn72Ss8e" alt="Campo 3">
+              </div>
+              <div class="banner-grid__item">
+                <img src="https://lh3.googleusercontent.com/d/1rVvzaUxgBm0EmT_QJpXIq-a4P2DLm710" alt="Campo 4">
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2: otras 4 fotos -->
+          <div class="banner-grid__slide">
+            <div class="banner-grid__images">
+              <div class="banner-grid__item">
+                <img src="https://lh3.googleusercontent.com/d/1l0DpfhlgwLxsf14Dg5svhCp854qbEB-R" alt="Campo 5">
+              </div>
+              <div class="banner-grid__item">
+                <img src="https://lh3.googleusercontent.com/d/1IKlfvyHeUqk1zq9YIhk1cYVXfZRZjT4_" alt="Campo 6">
+              </div>
+              <div class="banner-grid__item">
+                <img src="https://lh3.googleusercontent.com/d/18bsEz1jMVeDY71uHJnfS-d89rSS7dc_T" alt="Campo 7">
+              </div>
+              <div class="banner-grid__item">
+                <img src="https://lh3.googleusercontent.com/d/1iYw6dZ-JCeALkitlw3Shx-rVztJjb2m_" alt="Campo 8">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="banner-grid__overlay">
+        <h2 class="banner-grid__title">Sé parte de nuestro equipo</h2>
+        <p class="banner-grid__subtitle">En 2026 seguimos creciendo y expandiéndonos como el <em>Mercado Ganadero
+            Digital</em> más grande de la región.<br>¿Te sumás?</p>
+      </div>
+      <div class="banner-grid__dots" id="bannerDots">
+        <button class="banner-grid__dot active" data-index="0"></button>
+        <button class="banner-grid__dot" data-index="1"></button>
+      </div>
+    </section>
+
+    <!-- ==================== SPLIT VIEW ==================== -->
+    <div class="split-view">
+
+      <!-- Panel izquierdo: Lista de posiciones -->
+      <div class="split-view__list">
+        <div class="split-view__list-header">
+          <!-- Barra de filtros -->
+          <div class="search-bar">
+            <div class="search-bar__filters">
+              <div class="search-bar__select-wrapper">
+                <svg class="search-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <select id="searchPosicion" class="search-bar__select">
+                  <option value="">Todas las posiciones</option>
+                </select>
+              </div>
+              <div class="search-bar__select-wrapper">
+                <svg class="search-bar__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <select id="searchUbicacion" class="search-bar__select">
+                  <option value="">Todas las ubicaciones</option>
+                </select>
+              </div>
+            </div>
+            <div class="search-bar__count">
+              <span id="resultCount">0</span> búsquedas activas
+            </div>
+          </div>
+        </div>
+
+        <div class="split-view__list-content" id="listContent">
+          <!-- Loading state -->
+          <div class="loading" id="loading">
+            <div class="loading__spinner"></div>
+            <p>Cargando búsquedas...</p>
+          </div>
+
+          <!-- Error state -->
+          <div class="error-state" id="errorState" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <p id="errorMessage">Error al cargar los datos</p>
+            <button class="btn btn--primary" onclick="loadData()">Reintentar</button>
+          </div>
+
+          <!-- Lista de posiciones -->
+          <div class="jobs-list" id="jobsList" style="display: none;">
+            <!-- Items dinamicos -->
+          </div>
+
+          <!-- Estado vacio -->
+          <div class="empty-state" id="emptyState" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="12" y1="18" x2="12" y2="12"></line>
+              <line x1="9" y1="15" x2="15" y2="15"></line>
+            </svg>
+            <p>No hay búsquedas activas</p>
+          </div>
+
+          <!-- Sin resultados -->
+          <div class="no-results" id="noResults" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <p>No se encontraron resultados</p>
+          </div>
+        </div>
+
+        <!-- Boton Aplicar -->
+        <div class="split-view__list-footer" id="applySection" style="display: none;">
+          <div class="apply-section">
+            <div class="apply-section__info">
+              <span id="selectedCount">0</span> posición(es) seleccionada(s)
+            </div>
+            <button type="button" class="btn btn--success" id="btnAplicar" onclick="openApplyModal()">
+              Aplicar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel derecho: Detalle de posicion -->
+      <div class="split-view__detail" id="detailPanel">
+        <div class="detail-panel">
+          <div class="detail-panel__empty" id="detailEmpty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <p>Selecciona una posición para ver el detalle</p>
+          </div>
+          <div class="detail-panel__content" id="detailContent" style="display: none;">
+            <div class="detail-panel__header">
+              <div class="detail-panel__header-top">
+                <h2 class="detail-panel__title" id="detailTitle">-</h2>
+                <button type="button" class="btn-share" onclick="shareCurrentJob()" title="Compartir esta posición">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                  </svg>
+                  Compartir
+                </button>
+              </div>
+              <span class="detail-panel__location" id="detailLocation">-</span>
+            </div>
+            <div class="detail-panel__meta">
+              <div class="detail-panel__meta-item">
+                <span class="detail-panel__label">Gerencia</span>
+                <span class="detail-panel__value" id="detailGerencia">-</span>
+              </div>
+              <div class="detail-panel__meta-item">
+                <span class="detail-panel__label">Modalidad</span>
+                <span class="detail-panel__value" id="detailModalidad">-</span>
+              </div>
+              <div class="detail-panel__meta-item">
+                <span class="detail-panel__label">Fecha publicación</span>
+                <span class="detail-panel__value" id="detailFechaPublicacion">-</span>
+              </div>
+            </div>
+            <div class="detail-panel__section">
+              <h3 class="detail-panel__section-title">Responsabilidades Principales</h3>
+              <div class="detail-panel__description" id="detailResponsabilidades">
+                -
+              </div>
+            </div>
+            <div class="detail-panel__section">
+              <h3 class="detail-panel__section-title">Perfil Esperado</h3>
+              <div class="detail-panel__description" id="detailPerfilEsperado">
+                -
+              </div>
+            </div>
+            <div class="detail-panel__section">
+              <h3 class="detail-panel__section-title">Desafíos del rol</h3>
+              <div class="detail-panel__description" id="detailDesafios">
+                -
+              </div>
+            </div>
+            <div class="detail-panel__section">
+              <h3 class="detail-panel__section-title">Habilidades Principales</h3>
+              <div class="detail-panel__badges" id="detailHabilidades">
+              </div>
+            </div>
+            <div class="detail-panel__section">
+              <h3 class="detail-panel__section-title">Propuesta de valor - Beneficios</h3>
+              <div class="detail-panel__description" id="detailPropuestaValor">
+                -
+              </div>
+            </div>
+            <div class="detail-panel__actions">
+              <button type="button" class="btn btn--primary" id="detailApplyBtn" onclick="selectCurrentJob()">
+                Seleccionar esta posición
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== TOAST NOTIFICATIONS ==================== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==================== MODAL DETALLE JOB (MOBILE) ==================== -->
+  <div id="jobDetailModal" class="modal-overlay">
+    <div class="modal modal--job-detail">
+      <div class="modal__header">
+        <div class="modal__header-info">
+          <h3 id="jobModalTitle" class="modal__title">-</h3>
+          <div class="modal__location-row">
+            <span id="jobModalLocation" class="modal__location">-</span>
+            <button type="button" class="btn-share btn-share--sm" onclick="shareCurrentJob()" title="Compartir">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                <circle cx="18" cy="5" r="3"></circle>
+                <circle cx="6" cy="12" r="3"></circle>
+                <circle cx="18" cy="19" r="3"></circle>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+              </svg>
+              Compartir
+            </button>
+          </div>
+        </div>
+        <button type="button" class="modal__close" onclick="closeJobDetailModal()">&times;</button>
+      </div>
+      <div class="modal__body job-modal__body">
+        <div class="job-modal__meta">
+          <div class="job-modal__meta-item">
+            <span class="job-modal__label">Gerencia</span>
+            <span id="jobModalGerencia" class="job-modal__value">-</span>
+          </div>
+          <div class="job-modal__meta-item">
+            <span class="job-modal__label">Modalidad</span>
+            <span id="jobModalModalidad" class="job-modal__value">-</span>
+          </div>
+          <div class="job-modal__meta-item">
+            <span class="job-modal__label">Publicación</span>
+            <span id="jobModalFecha" class="job-modal__value">-</span>
+          </div>
+        </div>
+
+        <div class="job-modal__sections">
+          <div class="job-modal__section">
+            <h4 class="job-modal__section-title">Responsabilidades Principales</h4>
+            <div id="jobModalResponsabilidades" class="job-modal__content">-</div>
+          </div>
+
+          <div class="job-modal__section">
+            <h4 class="job-modal__section-title">Perfil Esperado</h4>
+            <div id="jobModalPerfil" class="job-modal__content">-</div>
+          </div>
+
+          <div class="job-modal__section">
+            <h4 class="job-modal__section-title">Desafíos del Rol</h4>
+            <div id="jobModalDesafios" class="job-modal__content">-</div>
+          </div>
+
+          <div class="job-modal__section">
+            <h4 class="job-modal__section-title">Habilidades Principales</h4>
+            <div id="jobModalHabilidades" class="job-modal__badges"></div>
+          </div>
+
+          <div class="job-modal__section">
+            <h4 class="job-modal__section-title">Propuesta de Valor - Beneficios</h4>
+            <div id="jobModalPropuesta" class="job-modal__content">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button type="button" class="btn btn--secondary" onclick="closeJobDetailModal()">Cerrar</button>
+        <button type="button" class="btn btn--primary" onclick="selectJobFromModal()">Seleccionar posición</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL APLICAR ==================== -->
+  <div id="applyModal" class="modal-overlay">
+    <div class="modal modal--application">
+      <div class="modal__header modal__header--apply">
+        <div class="modal__header-content">
+          <div class="modal__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h3 class="modal__title">Postularme</h3>
+            <p class="modal__subtitle">Completa tus datos para aplicar</p>
+          </div>
+        </div>
+        <button type="button" class="modal__close" onclick="closeApplyModal()">&times;</button>
+      </div>
+      <div class="modal__body modal__body--form">
+        <div class="modal__content-wrapper">
+          <!-- Barra de progreso vertical -->
+          <div class="progress-sidebar">
+            <div class="progress-steps">
+              <div class="progress-line-fill" id="progressLineFill"></div>
+              <div class="progress-step active" data-step="1">
+                <div class="progress-step__indicator">
+                  <span class="progress-step__number">1</span>
+                  <svg class="progress-step__check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="progress-step__content">
+                  <span class="progress-step__title">Posiciones</span>
+                  <span class="progress-step__desc">Seleccionadas</span>
+                </div>
+              </div>
+              <div class="progress-step" data-step="2">
+                <div class="progress-step__indicator">
+                  <span class="progress-step__number">2</span>
+                  <svg class="progress-step__check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="progress-step__content">
+                  <span class="progress-step__title">Datos</span>
+                  <span class="progress-step__desc">Personales</span>
+                </div>
+              </div>
+              <div class="progress-step" data-step="3">
+                <div class="progress-step__indicator">
+                  <span class="progress-step__number">3</span>
+                  <svg class="progress-step__check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="progress-step__content">
+                  <span class="progress-step__title">Contacto</span>
+                  <span class="progress-step__desc">Email y teléfono</span>
+                </div>
+              </div>
+              <div class="progress-step" data-step="4">
+                <div class="progress-step__indicator">
+                  <span class="progress-step__number">4</span>
+                  <svg class="progress-step__check" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <div class="progress-step__content">
+                  <span class="progress-step__title">Currículum</span>
+                  <span class="progress-step__desc">Adjuntar CV</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario -->
+          <div class="form-container">
+            <form id="applyForm" class="apply-form">
+              <!-- Posiciones seleccionadas -->
+              <div class="form-section" data-section="1">
+                <div class="form-section__header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <polyline points="9 11 12 14 22 4"></polyline>
+                  </svg>
+                  <span>Posiciones seleccionadas</span>
+                </div>
+                <div id="selectedJobsList" class="selected-jobs-chips"></div>
+              </div>
+
+              <!-- Datos personales -->
+              <div class="form-section" data-section="2">
+                <div class="form-section__header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>Datos personales</span>
+                </div>
+                <div class="form-grid">
+                  <div class="form-group form-group--full">
+                    <label class="form-label" for="applicantName">Nombre completo *</label>
+                    <input type="text" id="applicantName" name="nombre" class="form-input" placeholder="Ej: Juan Pérez"
+                      required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="applicantAge">Edad *</label>
+                    <input type="number" id="applicantAge" name="edad" class="form-input" min="18" max="99"
+                      placeholder="Ej: 28" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="applicantProvince">Provincia *</label>
+                    <select id="applicantProvince" name="provincia" class="form-input form-select" required>
+                      <option value="">Seleccionar...</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="applicantCity">Localidad *</label>
+                    <input type="text" id="applicantCity" name="localidad" class="form-input"
+                      placeholder="Ingrese su localidad" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Datos de contacto -->
+              <div class="form-section" data-section="3">
+                <div class="form-section__header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                  <span>Contacto</span>
+                </div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label" for="applicantEmail">Email *</label>
+                    <input type="email" id="applicantEmail" name="email" class="form-input"
+                      placeholder="ejemplo@email.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="applicantPhone">Teléfono *</label>
+                    <input type="tel" id="applicantPhone" name="telefono" class="form-input"
+                      placeholder="Ej: 11 2345-6789" required>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Curriculum -->
+              <div class="form-section" data-section="4">
+                <div class="form-section__header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <span>Currículum Vitae</span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="applicantCV">Adjuntar CV (PDF, PNG, JPG) *</label>
+                  <div class="file-upload">
+                    <input type="file" id="applicantCV" name="cv" class="file-upload__input" accept=".pdf,.png,.jpg,.jpeg" required>
+                    <label for="applicantCV" class="file-upload__label">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24"
+                        height="24">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      <span class="file-upload__text">Seleccionar archivo (PDF, PNG, JPG)</span>
+                      <span class="file-upload__hint">Máximo 10MB</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Acciones -->
+              <div class="form-actions">
+                <button id="applyModal" type="button" class="btn btn--secondary btn--lg"
+                  onclick="closeApplyModal()">Cancelar</button>
+                <button type="submit" class="btn btn--success btn--lg" id="submitApplyBtn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                  Enviar postulación
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="contact">
+    <div class="footer__container">
+      <div class="footer__grid">
+
+    
+        
+
+        <!-- Columna 3: Contacto con iconos -->
+        <div class="footer__col">
+          <div class="footer__social">
+            <a href="https://ar.linkedin.com/company/decampoacampo-com" target="_blank" class="footer__social-link"
+              title="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="34" height="34">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/decampoacampo" target="_blank" class="footer__social-link"
+              title="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="34" height="34">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@decampoacampo.app" target="_blank" class="footer__social-link" title="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="34" height="34">
+                <path
+                  d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+              </svg>
+            </a>
+            <a href="https://decampoacampo.com" target="_blank" class="footer__social-link" title="Sitio Web">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="34" height="34">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copyright">&copy;
+          2026 deCampoaCampo. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+<script src="config.js"></script>
+  <!-- UTM params inyectados desde el servidor -->
+  <script>
+    window.DCAC_UTM_PARAMS = {
+      utm_source: '',
+      utm_medium: '',
+      utm_campaign: '',
+      utm_content: '',
+      utm_term: ''
+    };
+    window.DCAC_INITIAL_JOB = '';
+    window.DCAC_WEBAPP_URL = '';
+</script>
+
+  <!-- MODAL TEMPLATE -->
+
+<div id="pdfModal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal__header">
+      <div class="modal__title-wrapper">
+        <h3 id="modalTitle" class="modal__title">Detalle de la Búsqueda</h3>
+        <div class="modal__actions">
+          <button id="downloadPdf" class="modal__action-btn" title="Descargar PDF">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Descargar</span>
+          </button>
+          <button id="printPdf" class="modal__action-btn" title="Imprimir PDF">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span>Imprimir</span>
+          </button>
+        </div>
+      </div>
+      <button id="closeModal" class="modal__close" aria-label="Cerrar">&times;</button>
+    </div>
+    <div class="modal__body">
+      <div class="modal__loader">
+        <div class="loading__spinner"></div>
+        <p>Cargando documento...</p>
+      </div>
+      <iframe id="modalIframe" src="" allow="autoplay"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  /**
+   * app.html - JavaScript Frontend
+   * Logica del cliente para la WebApp de busquedas RRHH
+   */
+
+  // ==================== CARGAR FONT MERRIWEATHER ====================
+  (function() {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap';
+    document.head.appendChild(link);
+  })();
+
+  // ==================== TRACKING MODULE ====================
+  // Sistema de tracking de visitas y eventos
+
+  var DcacTracker = (function() {
+    'use strict';
+
+    var VISITOR_KEY = 'dcac_visitor_id';
+    var _visitorId = null;
+    var _isReturning = 'SI';
+
+    // Genera UUID v4
+    function generateUUID() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0;
+        var v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
+    // Obtiene UTM del objeto inyectado por el servidor
+    function getUtm(name) {
+      if (window.DCAC_UTM_PARAMS && window.DCAC_UTM_PARAMS[name]) {
+        return window.DCAC_UTM_PARAMS[name];
+      }
+      return '';
+    }
+
+    // Detecta si es mobile
+    function isMobile() {
+      var ua = navigator.userAgent.toLowerCase();
+      return /mobile|android|iphone|ipad|ipod/.test(ua);
+    }
+
+    // Inicializa visitor_id
+    function initVisitor() {
+      if (_visitorId) return;
+
+      try {
+        _visitorId = localStorage.getItem(VISITOR_KEY);
+        if (!_visitorId) {
+          _visitorId = generateUUID();
+          localStorage.setItem(VISITOR_KEY, _visitorId);
+          _isReturning = 'NO';
+        }
+      } catch (e) {
+        _visitorId = 'anon-' + generateUUID();
+        _isReturning = 'NO';
+      }
+    }
+
+    // Envía evento al backend
+    function trackEvent(eventName, jobId) {
+      try {
+        initVisitor();
+
+        var payload = {
+          event_name: eventName || 'page_view',
+          job_id: jobId || '',
+          page: window.location.pathname || '/',
+          utm_source: getUtm('utm_source'),
+          utm_medium: getUtm('utm_medium'),
+          utm_campaign: getUtm('utm_campaign'),
+          utm_content: getUtm('utm_content'),
+          utm_term: getUtm('utm_term'),
+          referrer: document.referrer || '',
+          user_agent: navigator.userAgent || '',
+          device: isMobile() ? 'mobile' : 'desktop',
+          visitor_id: _visitorId,
+          is_returning: _isReturning
+        };
+
+        var trackUrl = (window.DCAC_WEBAPP_URL || '').split('?')[0];
+        if (trackUrl) {
+          fetch(trackUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({ action: 'logVisit', payload: payload })
+          }).catch(function(e) { console.log('Track error:', e); });
+        } else if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run
+            .withSuccessHandler(function() { /* ok */ })
+            .withFailureHandler(function(e) { console.log('Track error:', e); })
+            .logVisit(payload);
+        }
+      } catch (e) {
+        console.log('Tracking error:', e);
+      }
+    }
+
+    // Track page_view al cargar
+    function init() {
+      if (window._dcacPageViewTracked) return;
+      window._dcacPageViewTracked = true;
+      trackEvent('page_view', '');
+    }
+
+    // Ejecutar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    // API pública
+    return {
+      trackEvent: trackEvent
+    };
+
+  })();
+
+  // ==================== STATE ====================
+
+  const App = {
+    jobs: [],           // Datos originales del backend
+    filteredJobs: [],   // Datos filtrados por busqueda
+    searchPosicion: '', // Termino de busqueda por posicion
+    searchUbicacion: '', // Termino de busqueda por ubicacion
+    detallesHoja2: {}   // Detalles de DESCRIPCION BASE indexados por ID
+  };
+
+  // ==================== DOM ELEMENTS ====================
+
+  const DOM = {
+    loading: () => document.getElementById('loading'),
+    errorState: () => document.getElementById('errorState'),
+    errorMessage: () => document.getElementById('errorMessage'),
+    jobsList: () => document.getElementById('jobsList'),
+    emptyState: () => document.getElementById('emptyState'),
+    noResults: () => document.getElementById('noResults'),
+    searchPosicion: () => document.getElementById('searchPosicion'),
+    searchUbicacion: () => document.getElementById('searchUbicacion'),
+    resultCount: () => document.getElementById('resultCount'),
+    toastContainer: () => document.getElementById('toastContainer'),
+    detailEmpty: () => document.getElementById('detailEmpty'),
+    detailContent: () => document.getElementById('detailContent'),
+    detailTitle: () => document.getElementById('detailTitle'),
+    detailLocation: () => document.getElementById('detailLocation'),
+    detailGerencia: () => document.getElementById('detailGerencia'),
+    detailModalidad: () => document.getElementById('detailModalidad'),
+    detailFechaPublicacion: () => document.getElementById('detailFechaPublicacion'),
+    detailResponsabilidades: () => document.getElementById('detailResponsabilidades'),
+    detailPerfilEsperado: () => document.getElementById('detailPerfilEsperado'),
+    detailDesafios: () => document.getElementById('detailDesafios'),
+    detailHabilidades: () => document.getElementById('detailHabilidades'),
+    detailPropuestaValor: () => document.getElementById('detailPropuestaValor')
+  };
+
+  // Job actualmente seleccionado para ver detalle
+  var currentDetailJob = null;
+
+  // ==================== INITIALIZATION ====================
+
+  document.addEventListener('DOMContentLoaded', init);
+
+  // Evitar que el browser restaure scroll de visitas anteriores
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  function init() {
+    var ua = navigator.userAgent || '';
+    var isInstagram = ua.indexOf('Instagram') !== -1;
+    var isWebView = ua.indexOf('wv') !== -1 || ua.indexOf('WebView') !== -1;
+    console.log('=== INIT: Iniciando aplicación ===');
+    console.log('[DCAC] UA:', ua);
+    console.log('[DCAC] Instagram webview:', isInstagram, '| WebView genérico:', isWebView);
+    console.log('[DCAC] google disponible:', typeof google !== 'undefined');
+    console.log('[DCAC] localStorage disponible:', (function(){ try { localStorage.setItem('_t','1'); localStorage.removeItem('_t'); return true; } catch(e){ return false; } })());
+
+    // Siempre arrancar desde el top
+    window.scrollTo(0, 0);
+
+    // Ocultar loader inicial
+    var initialLoader = document.getElementById('initialLoader');
+    if (initialLoader) {
+      initialLoader.style.display = 'none';
+    }
+
+    try {
+      setupSearchListeners();
+      console.log('✓ setupSearchListeners OK');
+      setupModalListeners();
+      console.log('✓ setupModalListeners OK');
+      setupBannerCarousel();
+      console.log('✓ setupBannerCarousel OK');
+      loadData();
+      console.log('✓ loadData llamado');
+    } catch (e) {
+      console.error('ERROR en init:', e);
+      onDataError('Error al inicializar: ' + e.message);
+    }
+  }
+
+  /**
+   * Configura los event listeners para los filtros (selects)
+   */
+  function setupSearchListeners() {
+    var selectPosicion = DOM.searchPosicion();
+    var selectUbicacion = DOM.searchUbicacion();
+
+    // Filtro por posición
+    if (selectPosicion) {
+      selectPosicion.addEventListener('change', function (e) {
+        App.searchPosicion = e.target.value;
+        filterAndRender();
+        if (App.searchPosicion && App.filteredJobs.length > 0) {
+          showJobDetail(App.filteredJobs[0], true);
+        }
+      });
+    }
+
+    // Filtro por ubicación
+    if (selectUbicacion) {
+      selectUbicacion.addEventListener('change', function (e) {
+        App.searchUbicacion = e.target.value;
+        filterAndRender();
+        if (App.searchUbicacion && App.filteredJobs.length > 0) {
+          showJobDetail(App.filteredJobs[0], true);
+        }
+      });
+    }
+  }
+
+  /**
+   * Pobla los selectores con las opciones únicas de los datos
+   */
+  function populateFilters() {
+    var selectPosicion = DOM.searchPosicion();
+    var selectUbicacion = DOM.searchUbicacion();
+
+    // Obtener valores únicos de posiciones (dedup por nombre normalizado, muestra el primero encontrado)
+    var posiciones = [];
+    var posicionesNorm = [];
+    var ubicaciones = [];
+    var ubicacionesNorm = [];
+
+    App.jobs.forEach(function(job) {
+      var pos = (job.posicion || '').trim();
+      var ubi = (job.ubicacion || '').trim();
+      var posNorm = pos.toLowerCase();
+      var ubiNorm = ubi.toLowerCase();
+
+      if (pos && posicionesNorm.indexOf(posNorm) === -1) {
+        posiciones.push(pos);
+        posicionesNorm.push(posNorm);
+      }
+      if (ubi && ubicacionesNorm.indexOf(ubiNorm) === -1) {
+        ubicaciones.push(ubi);
+        ubicacionesNorm.push(ubiNorm);
+      }
+    });
+
+    // Ordenar alfabéticamente
+    posiciones.sort();
+    ubicaciones.sort();
+
+    // Poblar select de posiciones
+    if (selectPosicion) {
+      selectPosicion.innerHTML = '<option value="">Todas las posiciones</option>';
+      posiciones.forEach(function(pos) {
+        var option = document.createElement('option');
+        option.value = pos;
+        option.textContent = pos;
+        selectPosicion.appendChild(option);
+      });
+    }
+
+    // Poblar select de ubicaciones
+    if (selectUbicacion) {
+      selectUbicacion.innerHTML = '<option value="">Todas las ubicaciones</option>';
+      ubicaciones.forEach(function(ubi) {
+        var option = document.createElement('option');
+        option.value = ubi;
+        option.textContent = ubi;
+        selectUbicacion.appendChild(option);
+      });
+    }
+  }
+
+  // ==================== DATA LOADING ====================
+
+  // Configuración de cache del cliente - 30 minutos
+  var CLIENT_CACHE_KEY = 'dcac_jobs_cache';
+  var CLIENT_CACHE_DURATION = 1800000; // 30 minutos en ms
+
+  /**
+   * Obtiene datos del cache del cliente (localStorage para persistencia)
+   */
+  function getClientCache() {
+    try {
+      var cached = localStorage.getItem(CLIENT_CACHE_KEY);
+      if (cached) {
+        var parsed = JSON.parse(cached);
+        if (parsed.timestamp && (Date.now() - parsed.timestamp) < CLIENT_CACHE_DURATION) {
+          return parsed.data;
+        }
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  /**
+   * Guarda datos en el cache del cliente
+   */
+  function setClientCache(data) {
+    try {
+      localStorage.setItem(CLIENT_CACHE_KEY, JSON.stringify({
+        timestamp: Date.now(),
+        data: data
+      }));
+    } catch (e) {}
+  }
+
+  /**
+   * Limpia el cache del cliente
+   */
+  function clearClientCache() {
+    try {
+      localStorage.removeItem(CLIENT_CACHE_KEY);
+    } catch (e) {}
+  }
+
+  // Control de reintentos
+  var loadRetryCount = 0;
+  var maxRetries = 3;
+
+  /**
+   * Carga los datos desde el backend (CARGA INSTANTÁNEA con actualización en segundo plano)
+   */
+  function loadData() {
+    // PRIORIDAD 1: Cache del cliente (localStorage) → carga instantánea
+    var cachedData = getClientCache();
+    if (cachedData) {
+      onDataLoaded(cachedData);
+      refreshDataInBackground();
+      return;
+    }
+
+    // Sin cache - mostrar loading y cargar del servidor
+    showState('loading');
+    loadDataFromServer();
+  }
+
+  /**
+   * Actualiza datos en segundo plano sin interrumpir al usuario
+   */
+  function refreshDataInBackground() {
+    var base = (window.DCAC_WEBAPP_URL || '').split('?')[0];
+    if (!base) return;
+    fetch(base + '?action=getActiveJobs')
+      .then(function(r) { return r.json(); })
+      .then(function(response) {
+        if (response && response.success && response.data) {
+          setClientCache(response);
+          if (response.data.length !== App.jobs.length) {
+            App.jobs = response.data;
+            App.filteredJobs = App.jobs.slice();
+            filterAndRender();
+          }
+        }
+      })
+      .catch(function() { /* silencioso — el usuario ya tiene datos del cache */ });
+  }
+
+  /**
+   * Carga datos del servidor con reintentos automáticos
+   */
+  function loadDataFromServer() {
+    var base = (window.DCAC_WEBAPP_URL || '').split('?')[0];
+    if (!base) {
+      // Fallback: intentar con google.script.run si no hay URL
+      loadDataFromServerGAS();
+      return;
+    }
+
+    var timeoutMs = loadRetryCount === 0 ? 30000 : 20000;
+    var didTimeout = false;
+    var loadTimeout = setTimeout(function() {
+      didTimeout = true;
+      console.error('[DCAC] Timeout fetch intento ' + (loadRetryCount + 1));
+      handleLoadError('Timeout: la carga tardó demasiado');
+    }, timeoutMs);
+
+    fetch(base + '?action=getActiveJobs')
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function(response) {
+        if (didTimeout) return;
+        clearTimeout(loadTimeout);
+        loadRetryCount = 0;
+        setClientCache(response);
+        onDataLoaded(response);
+      })
+      .catch(function(err) {
+        if (didTimeout) return;
+        clearTimeout(loadTimeout);
+        console.error('[DCAC] fetch error:', err);
+        handleLoadError(err && err.message ? err.message : 'Error de red');
+      });
+  }
+
+  // Fallback con google.script.run (para entornos donde fetch no esté disponible)
+  function loadDataFromServerGAS() {
+    if (typeof google === 'undefined' || !google.script || !google.script.run) {
+      onDataError('No se pudo conectar con el servidor.');
+      return;
+    }
+    var timeoutMs = loadRetryCount === 0 ? 30000 : 20000;
+    var loadTimeout = setTimeout(function() {
+      handleLoadError('Timeout: la carga tardó demasiado');
+    }, timeoutMs);
+    try {
+      google.script.run
+        .withSuccessHandler(function(response) {
+          clearTimeout(loadTimeout);
+          loadRetryCount = 0;
+          setClientCache(response);
+          onDataLoaded(response);
+        })
+        .withFailureHandler(function(error) {
+          clearTimeout(loadTimeout);
+          handleLoadError(error);
+        })
+        .getActiveJobs();
+    } catch(e) {
+      clearTimeout(loadTimeout);
+      handleLoadError(e && e.message ? e.message : 'Error inesperado');
+    }
+  }
+
+  /**
+   * Maneja errores de carga con reintentos automáticos
+   */
+  function handleLoadError(error) {
+    var errorMsg = error
+      ? (typeof error === 'string' ? error : (error.message || JSON.stringify(error)))
+      : 'Error desconocido';
+    console.error('[DCAC] Error de carga (intento ' + (loadRetryCount + 1) + '):', errorMsg);
+
+    if (loadRetryCount < maxRetries) {
+      loadRetryCount++;
+      console.log('[DCAC] Reintentando... (' + loadRetryCount + '/' + maxRetries + ')');
+      setTimeout(function() {
+        loadDataFromServer();
+      }, 1000);
+    } else {
+      loadRetryCount = 0;
+      onDataError('Error al cargar datos. Intentá abrir el link directamente en Chrome o Safari.');
+    }
+  }
+
+  /**
+   * Fuerza la recarga de datos desde el servidor (ignora cache)
+   */
+  function forceReloadData() {
+    clearClientCache();
+    loadRetryCount = 0;
+    loadData();
+  }
+
+  /**
+   * Callback cuando los datos se cargan exitosamente
+   * @param {Object} response - { success: boolean, data?: Array, error?: string }
+   */
+  function onDataLoaded(response) {
+    try {
+      if (!response || !response.success) {
+        var serverError = (response && response.error && response.error !== 'undefined')
+          ? response.error
+          : 'No se pudo cargar la información. Intentá de nuevo.';
+        onDataError(serverError);
+        return;
+      }
+
+      App.jobs = response.data || [];
+      App.filteredJobs = App.jobs.slice();
+
+      // Poblar los selectores de filtros con las opciones
+      populateFilters();
+
+      filterAndRender();
+
+      // Auto-seleccionar job si viene en la URL (?job=ID)
+      if (window.DCAC_INITIAL_JOB && !window._initialJobSelected) {
+        window._initialJobSelected = true;
+        var initialJob = App.jobs.find(function(j) {
+          return String(j.id) === String(window.DCAC_INITIAL_JOB);
+        });
+        if (initialJob) {
+          var isMobileDevice = /mobile|android|iphone|ipad|ipod/i.test(navigator.userAgent);
+          if (isMobileDevice) {
+            openJobDetailModal(initialJob.id || initialJob.ID);
+          } else {
+            showJobDetail(initialJob);
+          }
+        }
+      }
+    } catch (e) {
+      onDataError('Error al procesar los datos: ' + e.message);
+    }
+  }
+
+  /**
+   * Callback cuando los detalles de DESCRIPCION BASE se cargan
+   */
+  function onDetallesLoaded(response) {
+    console.log('Detalles DESCRIPCION BASE recibidos:', response);
+    if (response && response.success) {
+      App.detallesHoja2 = response.data || {};
+      console.log('IDs en detallesHoja2:', Object.keys(App.detallesHoja2));
+      // Si hay un job seleccionado, actualizar su detalle
+      if (currentDetailJob) {
+        showJobDetail(currentDetailJob);
+      }
+    }
+    if (response && response.debug) {
+      console.log('Debug DESCRIPCION BASE:', response.debug);
+    }
+  }
+
+  /**
+   * Callback para errores de carga
+   * @param {string|Error} error - Error ocurrido
+   */
+  function onDataError(error) {
+    console.error('Error al cargar datos:', error);
+    DOM.errorMessage().textContent = typeof error === 'string' ? error : 'Error al cargar los datos';
+    showState('error');
+  }
+
+  // ==================== FILTERING ====================
+
+  /**
+   * Normaliza texto para busqueda (minusculas, sin acentos)
+   */
+  function normalizeText(text) {
+    if (!text) return '';
+    return String(text).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  /**
+   * Filtra los datos segun los filtros seleccionados y renderiza
+   */
+  function filterAndRender() {
+    try {
+    var hasPosicionFilter = App.searchPosicion && App.searchPosicion.length > 0;
+    var hasUbicacionFilter = App.searchUbicacion && App.searchUbicacion.length > 0;
+
+    var hasAnyFilter = hasPosicionFilter || hasUbicacionFilter;
+
+    if (!hasAnyFilter) {
+      App.filteredJobs = App.jobs.slice();
+    } else {
+      App.filteredJobs = App.jobs.filter(function (job) {
+        var matchPosicion = true;
+        var matchUbicacion = true;
+
+        // Filtro por posición (normalizado para cubrir diferencias de mayúsculas/espacios)
+        if (hasPosicionFilter) {
+          matchPosicion = (job.posicion || '').trim().toLowerCase() === App.searchPosicion.trim().toLowerCase();
+        }
+
+        // Filtro por ubicación (normalizado)
+        if (hasUbicacionFilter) {
+          matchUbicacion = (job.ubicacion || '').trim().toLowerCase() === App.searchUbicacion.trim().toLowerCase();
+        }
+
+        return matchPosicion && matchUbicacion;
+      });
+    }
+
+    // Ordenar por fecha de publicación (más recientes primero)
+    App.filteredJobs.sort(function (a, b) {
+      var fechaA = parseFechaPublicacion(a);
+      var fechaB = parseFechaPublicacion(b);
+      return fechaB - fechaA;
+    });
+
+    updateResultCount();
+    render();
+    } catch (e) {
+      onDataError('Error al filtrar datos: ' + e.message);
+    }
+  }
+
+  /**
+   * Parsea la fecha de publicación de un job
+   * @param {Object} job - Datos del job
+   * @returns {number} Timestamp de la fecha
+   */
+  function parseFechaPublicacion(job) {
+    var fechaPub = job.fechaPublicacionDetalle || job.fecha_publicacion || job.fecha_apertura || '';
+    if (!fechaPub) return 0;
+
+    try {
+      var d;
+      if (typeof fechaPub === 'string' && fechaPub.indexOf('T') !== -1) {
+        d = new Date(fechaPub);
+      } else if (typeof fechaPub === 'string' && fechaPub.indexOf('/') !== -1) {
+        var partes = fechaPub.split('/');
+        d = new Date(partes[2], partes[1] - 1, partes[0]);
+      } else {
+        d = new Date(fechaPub);
+      }
+      return isNaN(d.getTime()) ? 0 : d.getTime();
+    } catch (e) {
+      return 0;
+    }
+  }
+
+  /**
+   * Actualiza el contador de resultados
+   */
+  function updateResultCount() {
+    DOM.resultCount().textContent = App.filteredJobs.length;
+  }
+
+  // ==================== RENDERING ====================
+
+  /**
+   * Renderiza los datos segun el estado actual
+   */
+  function render() {
+    // Sin datos originales
+    if (App.jobs.length === 0) {
+      showState('empty');
+      return;
+    }
+
+    // Sin resultados de busqueda
+    if (App.filteredJobs.length === 0) {
+      showState('noResults');
+      return;
+    }
+
+    // Renderizar lista de jobs
+    renderJobsList();
+    showState('data');
+
+    // Mostrar detalle del primer job si no hay ninguno seleccionado
+    if (!currentDetailJob && App.filteredJobs.length > 0) {
+      showJobDetail(App.filteredJobs[0]);
+    }
+  }
+
+  /**
+   * Renderiza la lista de posiciones
+   */
+  function renderJobsList() {
+    var container = DOM.jobsList();
+    if (!container) return;
+    container.innerHTML = App.filteredJobs.map(renderJobItem).join('');
+  }
+
+  /**
+   * Renderiza un item de la lista
+   * @param {Object} job - Datos de la busqueda
+   * @returns {string} HTML del item
+   */
+  function renderJobItem(job) {
+    var id = job.id || job.ID || '';
+    var posicion = escapeHtml(job.posicion || '-');
+    var gerencia = escapeHtml(job.gerencia || '-');
+    var ubicacion = escapeHtml(job.ubicacion || '-');
+    var modalidad = escapeHtml(job.modalidadDetalle || job.modalidad || '');
+    var prioridadEmpresa = escapeHtml(job.prioridad_empresa || '');
+    var fechaPub = job.fechaPublicacionDetalle || job.fecha_publicacion || job.fecha_apertura || '';
+    var tiempoTranscurrido = calcularTiempoTranscurrido(fechaPub);
+    var isActive = currentDetailJob && (currentDetailJob.id || currentDetailJob.ID) === id;
+    var postulado = yaPostulado(id);
+
+    var html = '<div class="job-item' + (isActive ? ' active' : '') + (postulado ? ' job-item--postulado' : '') + '" data-id="' + id + '" onclick="handleJobClick(event, \'' + id + '\')">';
+
+    // Checkbox
+    html += '<div class="job-item__checkbox">';
+    if (postulado) {
+      html += '<div class="checkbox--disabled" title="Ya te postulaste a esta posición">';
+      html += '<svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="3" width="18" height="18"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+      html += '</div>';
+    } else {
+      html += '<label class="checkbox" onclick="event.stopPropagation()">';
+      var isChecked = selectedJobs.some(function(j) { return String(j.id) === String(id); });
+      html += '<input type="checkbox" class="checkbox__input job-checkbox" data-id="' + id + '" data-posicion="' + posicion + '" onchange="updateSelection()"' + (isChecked ? ' checked' : '') + '>';
+      html += '<span class="checkbox__mark"></span>';
+      html += '</label>';
+    }
+    html += '</div>';
+
+    // Contenido principal
+    html += '<div class="job-item__content">';
+
+    // Header: Título + Badge "Ya postulado" (arriba derecha)
+    html += '<div class="job-item__header">';
+    html += '<div class="job-item__title">' + posicion + '</div>';
+    if (postulado) {
+      html += '<div class="job-item__postulado-badge">Ya postulado</div>';
+    }
+    html += '</div>';
+
+    // Meta: Gerencia | Ubicación (de BASE) | Modalidad (badge) + Fecha publicación
+    html += '<div class="job-item__meta">';
+    html += '<span class="job-item__gerencia">' + gerencia + '</span>';
+    if (ubicacion && ubicacion !== '-') {
+      html += '<span class="job-item__separador">|</span>';
+      html += '<span class="job-item__ubicacion">' + ubicacion + '</span>';
+    }
+    html += '<span class="job-item__separador">|</span>';
+    if (modalidad) {
+      html += '<span class="job-item__modalidad-badge">' + modalidad + '</span>';
+    }
+    if (tiempoTranscurrido) {
+      html += '<span class="job-item__fecha">' + tiempoTranscurrido + '</span>';
+    }
+    html += '</div>';
+    html += '</div>'; // Cierra job-item__content
+
+    // Botón "Conocer más" para mobile
+    html += '<button class="job-item__conocer-mas" onclick="event.stopPropagation(); openJobDetailModal(\'' + id + '\')">Conocer más</button>';
+
+    html += '</div>'; // Cierra job-item
+    return html;
+  }
+
+  /**
+   * Verifica si el valor indica que es prioridad empresa
+   * @param {string} valor - Valor de la columna prioridad_empresa
+   * @returns {boolean} true si es prioridad
+   */
+  function esPrioridadEmpresa(valor) {
+    if (!valor) return false;
+    var v = String(valor).toLowerCase().trim();
+    // Si dice "no prioridad" no es prioridad
+    if (v.indexOf('no prioridad') !== -1 || v.indexOf('no es prioridad') !== -1) {
+      return false;
+    }
+    // Si dice "prioridad" sí es prioridad
+    if (v.indexOf('prioridad') !== -1) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Calcula el tiempo transcurrido desde una fecha
+   * @param {string|Date} fecha - Fecha de publicacion
+   * @returns {string} Texto como "Hace 3 dias", "Hace 1 semana", etc.
+   */
+  function calcularTiempoTranscurrido(fecha) {
+    if (!fecha) return '';
+
+    try {
+      var d;
+      if (typeof fecha === 'string' && fecha.indexOf('T') !== -1) {
+        d = new Date(fecha);
+      } else if (typeof fecha === 'string' && fecha.indexOf('/') !== -1) {
+        var partes = fecha.split('/');
+        d = new Date(partes[2], partes[1] - 1, partes[0]);
+      } else {
+        d = new Date(fecha);
+      }
+
+      if (isNaN(d.getTime())) return '';
+
+      var ahora = new Date();
+      var diffMs = ahora - d;
+      var diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+      if (diffDias < 0) return 'Próximamente';
+      if (diffDias === 0) return 'Publicado hoy';
+      if (diffDias === 1) return 'Publicado hace 1 día';
+      if (diffDias < 7) return 'Publicado hace ' + diffDias + ' días';
+      if (diffDias < 14) return 'Publicado hace 1 semana';
+      if (diffDias < 30) return 'Publicado hace ' + Math.floor(diffDias / 7) + ' semanas';
+      if (diffDias < 60) return 'Publicado hace 1 mes';
+      if (diffDias < 365) return 'Publicado hace ' + Math.floor(diffDias / 30) + ' meses';
+      return 'Publicado hace más de 1 año';
+
+    } catch (e) {
+      return '';
+    }
+  }
+
+  /**
+   * Maneja click en un job item (DESKTOP)
+   */
+  function handleJobClick(event, jobId) {
+    var job = App.filteredJobs.find(function (j) {
+      return (j.id || j.ID) == jobId;
+    });
+    if (job) {
+      // TRACKING: view_job
+      DcacTracker.trackEvent('view_job', jobId);
+      showJobDetail(job, true);
+    }
+  }
+
+  /**
+   * Muestra el detalle de un job en el panel derecho
+   * Incluye datos de DESCRIPCION BASE (responsabilidades, perfil, desafios, propuesta de valor)
+   * Solo muestra secciones que tienen contenido
+   */
+  function showJobDetail(job, userClick) {
+    currentDetailJob = job;
+
+    // Marcar en azul el item activo en la lista
+    var jobId = String(job.id || job.ID || '');
+    document.querySelectorAll('.job-item').forEach(function(item) {
+      item.classList.remove('active');
+    });
+    var activeItem = document.querySelector('.job-item[data-id="' + jobId + '"]');
+    if (activeItem) activeItem.classList.add('active');
+
+    var emptyEl = DOM.detailEmpty();
+    var contentEl = DOM.detailContent();
+
+    if (emptyEl) emptyEl.style.display = 'none';
+    if (contentEl) contentEl.style.display = 'block';
+
+    // Llenar datos basicos
+    var titleEl = DOM.detailTitle();
+    var locationEl = DOM.detailLocation();
+    var gerenciaEl = DOM.detailGerencia();
+    var modalidadEl = DOM.detailModalidad();
+    var fechaPublicacionEl = DOM.detailFechaPublicacion();
+
+    // Datos de DESCRIPCION BASE
+    var responsabilidadesEl = DOM.detailResponsabilidades();
+    var perfilEsperadoEl = DOM.detailPerfilEsperado();
+    var desafiosEl = DOM.detailDesafios();
+    var habilidadesEl = DOM.detailHabilidades();
+    var propuestaValorEl = DOM.detailPropuestaValor();
+
+    // Datos basicos
+    if (titleEl) titleEl.textContent = job.posicion || '-';
+    if (locationEl) locationEl.textContent = job.ubicacionDetalle || job.ubicacion || '-';
+    if (gerenciaEl) gerenciaEl.textContent = job.gerencia || '-';
+
+    // Modalidad
+    var modalidadValue = job.modalidadDetalle || job.modalidad || '-';
+    if (modalidadEl) modalidadEl.textContent = modalidadValue;
+
+    // Fecha publicacion (formateada)
+    var fechaValue = job.fechaPublicacionDetalle || job.fecha_publicacion || job.fecha_apertura || '';
+    if (fechaPublicacionEl) fechaPublicacionEl.textContent = formatearFecha(fechaValue) || '-';
+
+    // Datos de DESCRIPCION BASE - mostrar solo si tienen contenido
+    showSectionIfHasContent(responsabilidadesEl, job.responsabilidades);
+    showSectionIfHasContent(perfilEsperadoEl, job.perfilEsperado);
+    showSectionIfHasContent(desafiosEl, job.desafios);
+    showHabilidadesBadges(habilidadesEl, job.habilidadesPrincipales);
+    showSectionIfHasContent(propuestaValorEl, job.propuestaValor);
+
+    // Scroll al inicio del panel de detalle (después de actualizar contenido)
+    var detailPanel = document.getElementById('detailPanel');
+    setTimeout(function() {
+      if (detailPanel) detailPanel.scrollTop = 0;
+      // Solo scrollear la página si fue un click del usuario (no en carga inicial)
+      if (userClick) {
+        var splitView = document.querySelector('.split-view');
+        if (splitView) splitView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 0);
+  }
+
+  /**
+   * Muestra habilidades como badges
+   * @param {HTMLElement} element - Contenedor de badges
+   * @param {string} habilidades - Habilidades separadas por coma o salto de línea
+   */
+  function showHabilidadesBadges(element, habilidades) {
+    if (!element) return;
+
+    var sectionEl = element.closest('.detail-panel__section') || element.closest('.job-modal__section');
+
+    if (!habilidades || String(habilidades).trim() === '') {
+      element.innerHTML = '';
+      if (sectionEl) sectionEl.style.display = 'none';
+      return;
+    }
+
+    // Separar por coma, punto y coma, o salto de línea
+    var items = String(habilidades).split(/[,;\n]+/).map(function(h) {
+      return h.trim();
+    }).filter(function(h) {
+      return h.length > 0;
+    });
+
+    if (items.length === 0) {
+      element.innerHTML = '';
+      if (sectionEl) sectionEl.style.display = 'none';
+      return;
+    }
+
+    var badgesHtml = items.map(function(item) {
+      return '<span class="habilidad-badge">' + escapeHtml(item) + '</span>';
+    }).join('');
+
+    element.innerHTML = badgesHtml;
+    if (sectionEl) sectionEl.style.display = 'block';
+  }
+
+  /**
+   * Muestra una seccion solo si tiene contenido, oculta si esta vacia
+   * @param {HTMLElement} element - Elemento del contenido
+   * @param {string} content - Contenido a mostrar
+   */
+  function showSectionIfHasContent(element, content) {
+    if (!element) return;
+
+    // Obtener el contenedor padre (detail-panel__section)
+    var sectionEl = element.closest('.detail-panel__section');
+
+    // Verificar si hay contenido real (no vacio, no solo espacios)
+    var hasContent = content && String(content).trim() !== '';
+
+    if (hasContent) {
+      element.innerHTML = formatTextWithLineBreaks(content);
+      if (sectionEl) sectionEl.style.display = 'block';
+    } else {
+      element.innerHTML = '';
+      if (sectionEl) sectionEl.style.display = 'none';
+    }
+  }
+
+  /**
+   * Formatea texto con saltos de linea para HTML
+   * @param {string} text - Texto a formatear
+   * @returns {string} HTML con saltos de linea
+   */
+  function formatTextWithLineBreaks(text) {
+    if (!text) return '';
+    return escapeHtml(String(text)).replace(/\n/g, '<br>');
+  }
+
+  /**
+   * Formatea fecha a dd/mm/yyyy
+   * @param {string|Date} fecha - Fecha a formatear
+   * @returns {string} Fecha formateada
+   */
+  function formatearFecha(fecha) {
+    if (!fecha) return '';
+
+    try {
+      var d;
+
+      // Si es string ISO (2025-12-15T03:00:00.000Z)
+      if (typeof fecha === 'string' && fecha.indexOf('T') !== -1) {
+        d = new Date(fecha);
+      }
+      // Si ya es formato dd/mm/yyyy
+      else if (typeof fecha === 'string' && fecha.indexOf('/') !== -1) {
+        return fecha;
+      }
+      // Si es Date
+      else if (fecha instanceof Date) {
+        d = fecha;
+      }
+      // Otro formato
+      else {
+        d = new Date(fecha);
+      }
+
+      if (isNaN(d.getTime())) return String(fecha);
+
+      var dia = String(d.getDate()).padStart(2, '0');
+      var mes = String(d.getMonth() + 1).padStart(2, '0');
+      var anio = d.getFullYear();
+
+      return dia + '/' + mes + '/' + anio;
+
+    } catch (e) {
+      return String(fecha);
+    }
+  }
+
+  /**
+   * Selecciona el job actual desde el panel de detalle
+   */
+  function selectCurrentJob() {
+    if (!currentDetailJob) return;
+
+    var jobId = currentDetailJob.id || currentDetailJob.ID;
+    var checkbox = document.querySelector('.job-checkbox[data-id="' + jobId + '"]');
+
+    if (checkbox && !checkbox.checked) {
+      checkbox.checked = true;
+      updateSelection();
+      showToast('Posición agregada a la selección', 'success');
+    } else if (checkbox && checkbox.checked) {
+      showToast('Esta posición ya está seleccionada', 'error');
+    }
+  }
+
+  // ==================== TOGGLE ACTIVE ====================
+
+  /**
+   * Maneja el cambio del checkbox activa
+   * @param {number} jobId - ID de la busqueda
+   * @param {boolean} newValue - Nuevo valor del checkbox
+   */
+  function handleToggleActive(jobId, newValue) {
+    // Deshabilitar checkboxes mientras se procesa
+    setCheckboxesDisabled(jobId, true);
+
+    google.script.run
+      .withSuccessHandler(function (response) {
+        onToggleSuccess(response, jobId, newValue);
+      })
+      .withFailureHandler(function (error) {
+        onToggleError(error, jobId, newValue);
+      })
+      .toggleActive(jobId, newValue);
+  }
+
+  /**
+   * Callback cuando el toggle es exitoso
+   */
+  function onToggleSuccess(response, jobId, newValue) {
+    setCheckboxesDisabled(jobId, false);
+
+    if (!response.success) {
+      // Revertir checkbox
+      revertCheckbox(jobId, !newValue);
+      showToast(response.error || 'Error al actualizar', 'error');
+      return;
+    }
+
+    // Actualizar estado local
+    const job = App.jobs.find(j => (j.id || j.ID) == jobId);
+    if (job) {
+      job.activa = newValue;
+      // Si se desactivo, remover de la lista
+      if (!newValue) {
+        App.jobs = App.jobs.filter(j => (j.id || j.ID) != jobId);
+        filterAndRender();
+        showToast('Búsqueda desactivada', 'success');
+      } else {
+        showToast('Búsqueda activada', 'success');
+      }
+    }
+  }
+
+  /**
+   * Callback cuando el toggle falla
+   */
+  function onToggleError(error, jobId, newValue) {
+    console.error('Error al actualizar:', error);
+    setCheckboxesDisabled(jobId, false);
+    revertCheckbox(jobId, !newValue);
+    showToast('Error al actualizar', 'error');
+  }
+
+  /**
+   * Deshabilita/habilita los checkboxes de un job
+   */
+  function setCheckboxesDisabled(jobId, disabled) {
+    const row = document.querySelector(`tr[data-id="${jobId}"]`);
+    const card = document.querySelector(`.card[data-id="${jobId}"]`);
+
+    [row, card].forEach(el => {
+      if (el) {
+        const checkbox = el.querySelector('.checkbox__input');
+        if (checkbox) checkbox.disabled = disabled;
+      }
+    });
+  }
+
+  /**
+   * Revierte el estado del checkbox
+   */
+  function revertCheckbox(jobId, value) {
+    const row = document.querySelector(`tr[data-id="${jobId}"]`);
+    const card = document.querySelector(`.card[data-id="${jobId}"]`);
+
+    [row, card].forEach(el => {
+      if (el) {
+        const checkbox = el.querySelector('.checkbox__input');
+        if (checkbox) checkbox.checked = value;
+      }
+    });
+  }
+
+  // ==================== UI HELPERS ====================
+
+  /**
+   * Muestra un estado de la UI
+   * @param {string} state - 'loading' | 'error' | 'empty' | 'noResults' | 'data'
+   */
+  function showState(state) {
+    // Ocultar todos los estados
+    var loading = DOM.loading();
+    var errorState = DOM.errorState();
+    var emptyState = DOM.emptyState();
+    var noResults = DOM.noResults();
+    var jobsList = DOM.jobsList();
+
+    if (loading) loading.style.display = 'none';
+    if (errorState) errorState.style.display = 'none';
+    if (emptyState) emptyState.style.display = 'none';
+    if (noResults) noResults.style.display = 'none';
+    if (jobsList) jobsList.style.display = 'none';
+
+    // Mostrar el estado correspondiente
+    switch (state) {
+      case 'loading':
+        if (loading) loading.style.display = 'block';
+        break;
+      case 'error':
+        if (errorState) errorState.style.display = 'block';
+        break;
+      case 'empty':
+        if (emptyState) emptyState.style.display = 'block';
+        break;
+      case 'noResults':
+        if (noResults) noResults.style.display = 'block';
+        break;
+      case 'data':
+        if (jobsList) jobsList.style.display = 'flex';
+        break;
+    }
+  }
+
+  // ==================== SHARE ====================
+
+  /**
+   * Comparte la posición actualmente visible en el panel de detalle
+   */
+  function shareCurrentJob() {
+    if (!currentDetailJob) return;
+    var id = currentDetailJob.id || currentDetailJob.ID;
+    shareJob(id);
+  }
+
+  /**
+   * Copia al portapapeles la URL directa a una posición específica
+   * @param {string} jobId - ID del job a compartir
+   */
+  function shareJob(jobId) {
+    var base = (window.DCAC_WEBAPP_URL || '').split('?')[0];
+    if (!base) {
+      showToast('No se pudo obtener la URL', 'error');
+      return;
+    }
+    var shareUrl = base + '?job=' + encodeURIComponent(jobId);
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(shareUrl).then(function() {
+        showToast('URL copiada al portapapeles', 'success');
+      }).catch(function() {
+        fallbackCopyToClipboard(shareUrl);
+      });
+    } else {
+      fallbackCopyToClipboard(shareUrl);
+    }
+  }
+
+  function fallbackCopyToClipboard(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('URL copiada al portapapeles', 'success');
+    } catch(e) {
+      showToast('No se pudo copiar la URL', 'error');
+    }
+    document.body.removeChild(ta);
+  }
+
+  /**
+   * Muestra un toast de notificacion
+   * @param {string} message - Mensaje a mostrar
+   * @param {string} type - 'success' | 'error'
+   */
+  function showToast(message, type) {
+    if (!type) type = 'success';
+    var container = DOM.toastContainer();
+    if (!container) return;
+    var toast = document.createElement('div');
+    toast.className = 'toast toast--' + type;
+    toast.textContent = message || '';
+
+    container.appendChild(toast);
+
+    // Remover despues de 3 segundos
+    setTimeout(function() {
+      toast.style.animation = 'slideIn 0.3s ease reverse';
+      setTimeout(function() { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
+    }, 3000);
+  }
+
+  /**
+   * Escapa HTML para prevenir XSS
+   * @param {string} text - Texto a escapar
+   * @returns {string} Texto escapado
+   */
+  function escapeHtml(text) {
+    if (text === null || text === undefined) return '';
+    const div = document.createElement('div');
+    div.textContent = String(text);
+    return div.innerHTML;
+  }
+
+  /**
+   * Abre PDF en nueva pestana
+   * @param {string} url - URL del PDF
+   */
+  function openPdf(url) {
+    window.open(url, '_blank');
+  }
+
+  /**
+   * Abre el modal PDF de forma segura (decodifica URL y titulo)
+   * @param {string} encodedUrl - URL codificada
+   * @param {string} encodedTitle - Titulo codificado
+   */
+  function openPdfSafe(encodedUrl, encodedTitle) {
+    const url = decodeURIComponent(encodedUrl);
+    const title = decodeURIComponent(encodedTitle);
+    renderPdfModal(url, title);
+  }
+
+  /**
+   * Convierte URL de Google Drive al formato /view
+   * @param {string} url - URL original de Drive
+   * @returns {string} URL convertida
+   */
+  function convertDriveUrl(url) {
+    if (!url) return '';
+
+    // Si ya es formato /view o /preview, devolverla
+    if (url.includes('/view') || url.includes('/preview')) {
+      return url;
+    }
+
+    // Extraer ID del formato open?id=XXXXX
+    let fileId = '';
+
+    if (url.includes('open?id=')) {
+      const match = url.match(/open\?id=([a-zA-Z0-9_-]+)/);
+      if (match) fileId = match[1];
+    } else if (url.includes('/d/')) {
+      const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+      if (match) fileId = match[1];
+    } else {
+      // Asumir que es solo el ID
+      fileId = url.trim();
+    }
+
+    if (fileId) {
+      return 'https://drive.google.com/file/d/' + fileId + '/view';
+    }
+
+    return url;
+  }
+
+  // ==================== MODAL ====================
+
+  // URL actual del PDF en el modal
+  let currentPdfUrl = '';
+
+  /**
+   * Configura los event listeners del modal
+   */
+  function setupModalListeners() {
+    const modal = document.getElementById('pdfModal');
+    const closeBtn = document.getElementById('closeModal');
+    const downloadBtn = document.getElementById('downloadPdf');
+    const printBtn = document.getElementById('printPdf');
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeModal);
+    }
+
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', downloadPdf);
+    }
+
+    if (printBtn) {
+      printBtn.addEventListener('click', printPdf);
+    }
+
+    // Cerrar al hacer clic fuera del modal
+    if (modal) {
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
+  /**
+   * Abre el modal con el PDF
+   * @param {string} url - URL del PDF
+   * @param {string} title - Titulo del modal
+   */
+  function renderPdfModal(url, title) {
+    const modal = document.getElementById('pdfModal');
+    const iframe = document.getElementById('modalIframe');
+    const modalTitle = document.getElementById('modalTitle');
+    const loader = document.querySelector('.modal__loader');
+
+    if (!modal || !iframe) return;
+
+    // Guardar URL para descarga/impresion
+    currentPdfUrl = url;
+
+    // Convertir URL de Drive al formato embebible
+    const embedUrl = convertDriveUrl(url).replace('/view', '/preview');
+
+    modalTitle.textContent = title || 'Detalle de la Búsqueda';
+    iframe.src = '';
+
+    // Mostrar loader
+    if (loader) loader.style.display = 'flex';
+    iframe.style.display = 'none';
+
+    // Mostrar modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Cargar iframe
+    iframe.onload = function () {
+      if (loader) loader.style.display = 'none';
+      iframe.style.display = 'block';
+    };
+    iframe.src = embedUrl;
+  }
+
+  /**
+   * Descarga el PDF actual
+   */
+  function downloadPdf() {
+    if (!currentPdfUrl) return;
+
+    // Extraer el ID del archivo de Google Drive
+    const fileId = extractDriveFileId(currentPdfUrl);
+
+    if (fileId) {
+      // URL de descarga directa de Google Drive
+      const downloadUrl = 'https://drive.google.com/uc?export=download&id=' + fileId;
+      window.open(downloadUrl, '_blank');
+    } else {
+      // Fallback: abrir URL original
+      window.open(currentPdfUrl, '_blank');
+    }
+  }
+
+  /**
+   * Extrae el ID de archivo de una URL de Google Drive
+   * @param {string} url - URL de Google Drive
+   * @returns {string|null} ID del archivo o null
+   */
+  function extractDriveFileId(url) {
+    if (!url) return null;
+
+    // Formato: /d/FILE_ID/
+    let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (match) return match[1];
+
+    // Formato: open?id=FILE_ID
+    match = url.match(/open\?id=([a-zA-Z0-9_-]+)/);
+    if (match) return match[1];
+
+    // Formato: id=FILE_ID
+    match = url.match(/id=([a-zA-Z0-9_-]+)/);
+    if (match) return match[1];
+
+    return null;
+  }
+
+  /**
+   * Imprime el PDF actual
+   */
+  function printPdf() {
+    if (!currentPdfUrl) return;
+
+    // Abrir en nueva ventana para imprimir
+    const viewUrl = convertDriveUrl(currentPdfUrl);
+    const printWindow = window.open(viewUrl, '_blank');
+
+    // Intentar abrir dialogo de impresion despues de cargar
+    if (printWindow) {
+      printWindow.onload = function () {
+        setTimeout(function () {
+          printWindow.print();
+        }, 1000);
+      };
+    }
+  }
+
+  /**
+   * Cierra el modal
+   */
+  function closeModal() {
+    var modal = document.getElementById('pdfModal');
+    var iframe = document.getElementById('modalIframe');
+
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    if (iframe) {
+      iframe.src = '';
+    }
+    currentPdfUrl = '';
+  }
+
+  // ==================== MODAL DETALLE JOB (MOBILE) ====================
+
+  /**
+   * Abre el modal de detalle de un job (para mobile)
+   */
+  function openJobDetailModal(jobId) {
+    var job = App.filteredJobs.find(function (j) {
+      return (j.id || j.ID) == jobId;
+    });
+    if (!job) return;
+
+    // Setear job actual para que shareCurrentJob() funcione en mobile
+    currentDetailJob = job;
+
+    // TRACKING: view_job (mobile)
+    DcacTracker.trackEvent('view_job', jobId);
+
+    var modal = document.getElementById('jobDetailModal');
+    if (!modal) return;
+
+    // Llenar datos del modal
+    var titleEl = document.getElementById('jobModalTitle');
+    var locationEl = document.getElementById('jobModalLocation');
+    var gerenciaEl = document.getElementById('jobModalGerencia');
+    var modalidadEl = document.getElementById('jobModalModalidad');
+    var fechaEl = document.getElementById('jobModalFecha');
+    var responsabilidadesEl = document.getElementById('jobModalResponsabilidades');
+    var perfilEl = document.getElementById('jobModalPerfil');
+    var desafiosEl = document.getElementById('jobModalDesafios');
+    var habilidadesEl = document.getElementById('jobModalHabilidades');
+    var propuestaEl = document.getElementById('jobModalPropuesta');
+
+    if (titleEl) titleEl.textContent = job.posicion || '-';
+    if (locationEl) locationEl.textContent = job.ubicacionDetalle || job.ubicacion || '-';
+    if (gerenciaEl) gerenciaEl.textContent = job.gerencia || '-';
+    if (modalidadEl) modalidadEl.textContent = job.modalidadDetalle || job.modalidad || '-';
+    if (fechaEl) fechaEl.textContent = formatearFecha(job.fechaPublicacionDetalle || job.fecha_publicacion || job.fecha_apertura) || '-';
+
+    // Secciones con contenido
+    showModalSectionIfHasContent(responsabilidadesEl, job.responsabilidades);
+    showModalSectionIfHasContent(perfilEl, job.perfilEsperado);
+    showModalSectionIfHasContent(desafiosEl, job.desafios);
+    showHabilidadesBadges(habilidadesEl, job.habilidadesPrincipales);
+    showModalSectionIfHasContent(propuestaEl, job.propuestaValor);
+
+    // Guardar job actual para el botón seleccionar
+    modal.dataset.jobId = jobId;
+
+    // Mostrar modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  /**
+   * Muestra sección del modal si tiene contenido
+   */
+  function showModalSectionIfHasContent(element, content) {
+    if (!element) return;
+    var section = element.closest('.job-modal__section');
+    var hasContent = content && String(content).trim() !== '';
+
+    if (hasContent) {
+      element.innerHTML = formatTextWithLineBreaks(content);
+      if (section) section.style.display = 'block';
+    } else {
+      element.innerHTML = '';
+      if (section) section.style.display = 'none';
+    }
+  }
+
+  /**
+   * Cierra el modal de detalle de job
+   */
+  function closeJobDetailModal() {
+    var modal = document.getElementById('jobDetailModal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  /**
+   * Selecciona el job desde el modal de detalle
+   */
+  function selectJobFromModal() {
+    var modal = document.getElementById('jobDetailModal');
+    if (!modal) return;
+
+    var jobId = modal.dataset.jobId;
+    var checkbox = document.querySelector('.job-checkbox[data-id="' + jobId + '"]');
+
+    if (checkbox && !checkbox.checked) {
+      checkbox.checked = true;
+      updateSelection();
+      showToast('Posición agregada a la selección', 'success');
+      closeJobDetailModal();
+    } else if (checkbox && checkbox.checked) {
+      showToast('Esta posición ya está seleccionada', 'error');
+    }
+  }
+
+  // ==================== POSTULACION ====================
+
+  /**
+   * Guarda las posiciones postuladas en localStorage
+   * @param {Array} jobs - Array de jobs postulados
+   */
+  function guardarPostulaciones(jobs) {
+    try {
+      var postuladas = obtenerPostulaciones();
+      for (var i = 0; i < jobs.length; i++) {
+        var id = String(jobs[i].id);
+        if (postuladas.indexOf(id) === -1) {
+          postuladas.push(id);
+        }
+      }
+      localStorage.setItem('postulaciones_rrhh', JSON.stringify(postuladas));
+    } catch (e) {
+      console.log('Error guardando postulaciones:', e);
+    }
+  }
+
+  /**
+   * Obtiene las posiciones postuladas del localStorage
+   * @returns {Array} Array de IDs postulados
+   */
+  function obtenerPostulaciones() {
+    try {
+      var data = localStorage.getItem('postulaciones_rrhh');
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  /**
+   * Verifica si un job ya fue postulado
+   * @param {string|number} id - ID del job
+   * @returns {boolean}
+   */
+  function yaPostulado(id) {
+    var postuladas = obtenerPostulaciones();
+    return postuladas.indexOf(String(id)) !== -1;
+  }
+
+  // Estado de seleccion
+  var selectedJobs = [];
+
+  // Lista de provincias
+  var PROVINCIAS = [
+    'Buenos Aires',
+    'CABA',
+    'Catamarca',
+    'Chaco',
+    'Chubut',
+    'Cordoba',
+    'Corrientes',
+    'Entre Rios',
+    'Formosa',
+    'Jujuy',
+    'La Pampa',
+    'La Rioja',
+    'Mendoza',
+    'Misiones',
+    'Neuquen',
+    'Rio Negro',
+    'Salta',
+    'San Juan',
+    'San Luis',
+    'Santa Cruz',
+    'Santa Fe',
+    'Santiago del Estero',
+    'Tierra del Fuego',
+    'Tucuman'
+  ];
+
+  /**
+   * Actualiza el estado de seleccion
+   */
+  function updateSelection() {
+    var allCheckboxes = document.querySelectorAll('.job-checkbox');
+    var checkedCheckboxes = document.querySelectorAll('.job-checkbox:checked');
+
+    // IDs visibles en el DOM actual
+    var visibleIds = {};
+    for (var k = 0; k < allCheckboxes.length; k++) {
+      visibleIds[String(allCheckboxes[k].getAttribute('data-id'))] = true;
+    }
+
+    // Preservar los jobs seleccionados que están ocultos por el filtro
+    var hiddenSelected = selectedJobs.filter(function(j) {
+      return !visibleIds[String(j.id)];
+    });
+
+    selectedJobs = hiddenSelected.slice();
+
+    // Remover clase selected de todos los job-items visibles
+    for (var j = 0; j < allCheckboxes.length; j++) {
+      var jobItem = allCheckboxes[j].closest('.job-item');
+      if (jobItem) jobItem.classList.remove('selected');
+    }
+
+    // Agregar los visibles marcados
+    for (var i = 0; i < checkedCheckboxes.length; i++) {
+      var cb = checkedCheckboxes[i];
+      var jobItem = cb.closest('.job-item');
+      if (jobItem) jobItem.classList.add('selected');
+      selectedJobs.push({
+        id: cb.getAttribute('data-id'),
+        posicion: cb.getAttribute('data-posicion')
+      });
+    }
+
+    var countEl = document.getElementById('selectedCount');
+    var sectionEl = document.getElementById('applySection');
+
+    if (countEl) countEl.textContent = selectedJobs.length;
+    if (sectionEl) sectionEl.style.display = selectedJobs.length > 0 ? 'flex' : 'none';
+  }
+
+  /**
+   * Abre el modal de aplicacion
+   */
+  function openApplyModal() {
+    if (selectedJobs.length === 0) {
+      showToast('Selecciona al menos una posición', 'error');
+      return;
+    }
+
+    var modal = document.getElementById('applyModal');
+    var listEl = document.getElementById('selectedJobsList');
+    var provinceSelect = document.getElementById('applicantProvince');
+
+    // Mostrar posiciones seleccionadas como chips
+    if (listEl) {
+      var html = '';
+      for (var i = 0; i < selectedJobs.length; i++) {
+        html += '<span class="job-chip">' + escapeHtml(selectedJobs[i].posicion) + '</span>';
+      }
+      listEl.innerHTML = html;
+    }
+
+    // Cargar provincias
+    if (provinceSelect && provinceSelect.options.length <= 1) {
+      for (var j = 0; j < PROVINCIAS.length; j++) {
+        var opt = document.createElement('option');
+        opt.value = PROVINCIAS[j];
+        opt.textContent = PROVINCIAS[j];
+        provinceSelect.appendChild(opt);
+      }
+    }
+
+    // Resetear formulario
+    var form = document.getElementById('applyForm');
+    if (form) form.reset();
+
+    // Mostrar modal
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Setup submit handler
+    if (form) {
+      form.onsubmit = handleApplySubmit;
+    }
+  }
+
+  /**
+   * Cierra el modal de aplicacion
+   */
+  function closeApplyModal() {
+    var modal = document.getElementById('applyModal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  /**
+   * Maneja el envio del formulario
+   */
+  function handleApplySubmit(e) {
+    e.preventDefault();
+
+    // TRACKING: apply_click
+    if (selectedJobs.length > 0) {
+      var jobIds = selectedJobs.map(function(j) { return j.id; }).join(',');
+      DcacTracker.trackEvent('apply_click', jobIds);
+    }
+
+    var submitBtn = document.getElementById('submitApplyBtn');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+    }
+
+    var cvInput = document.getElementById('applicantCV');
+    var file = cvInput && cvInput.files[0];
+
+    if (!file) {
+      showToast('Por favor adjunta tu CV', 'error');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar postulación';
+      }
+      return;
+    }
+
+    // Leer archivo como base64
+    var reader = new FileReader();
+    reader.onload = function (event) {
+      var base64 = event.target.result.split(',')[1];
+
+      var posicionesIds = [];
+      var posicionesNombres = [];
+      for (var i = 0; i < selectedJobs.length; i++) {
+        posicionesIds.push(selectedJobs[i].id);
+        posicionesNombres.push(selectedJobs[i].posicion);
+      }
+
+      var formData = {
+        nombre: document.getElementById('applicantName').value,
+        edad: document.getElementById('applicantAge').value,
+        provincia: document.getElementById('applicantProvince').value,
+        localidad: document.getElementById('applicantCity').value,
+        email: document.getElementById('applicantEmail').value,
+        telefono: document.getElementById('applicantPhone').value,
+        posicionesIds: posicionesIds.join(', '),
+        posicionesNombres: posicionesNombres.join(', '),
+        cvFileName: file.name,
+        cvBase64: base64
+      };
+
+      function onSubmitSuccess(response) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar postulación';
+        }
+        if (response && response.success) {
+          showToast('¡Postulación enviada correctamente!', 'success');
+          guardarPostulaciones(selectedJobs);
+          closeApplyModal();
+          var checkboxes = document.querySelectorAll('.job-checkbox:checked');
+          for (var i = 0; i < checkboxes.length; i++) { checkboxes[i].checked = false; }
+          updateSelection();
+          filterAndRender();
+        } else {
+          showToast((response && response.error) || 'Error al enviar', 'error');
+        }
+      }
+
+      function onSubmitError(error) {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar postulación';
+        }
+        showToast('Error al enviar: ' + error, 'error');
+      }
+
+      var submitUrl = (window.DCAC_WEBAPP_URL || '').split('?')[0];
+      if (submitUrl) {
+        // Hosting externo (GitHub Pages): fetch con no-cors, respuesta opaca
+        fetch(submitUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify({ action: 'submitApplication', formData: formData })
+        })
+        .then(function() {
+          // no-cors = respuesta opaca, asumimos éxito (las alertas de RRHH cubren los fallos)
+          onSubmitSuccess({ success: true });
+        })
+        .catch(function(error) { onSubmitError(error); });
+      } else if (typeof google !== 'undefined' && google.script && google.script.run) {
+        // Fallback GAS nativo
+        google.script.run
+          .withSuccessHandler(onSubmitSuccess)
+          .withFailureHandler(onSubmitError)
+          .submitApplication(formData);
+      } else {
+        onSubmitError('No se pudo conectar con el servidor');
+      }
+    };
+
+    reader.onerror = function () {
+      showToast('Error al leer el archivo', 'error');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar postulación';
+      }
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  // ==================== BANNER CARRUSEL ====================
+
+  var bannerInterval = null;
+  var currentSlide = 0;
+
+  /**
+   * Configura el carrusel del banner
+   */
+  function setupBannerCarousel() {
+    var slides = document.querySelectorAll('.banner-grid__slide, .banner__slide');
+    var dots = document.querySelectorAll('.banner-grid__dot, .banner__dot');
+
+    if (slides.length === 0) return;
+
+    // Click en los dots
+    dots.forEach(function (dot, index) {
+      dot.addEventListener('click', function () {
+        goToSlide(index);
+      });
+    });
+
+    // Iniciar autoplay
+    startCarouselAutoplay();
+
+    // Pausar en hover
+    var carousel = document.getElementById('bannerCarousel');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', stopCarouselAutoplay);
+      carousel.addEventListener('mouseleave', startCarouselAutoplay);
+    }
+  }
+
+  /**
+   * Va a un slide especifico
+   */
+  function goToSlide(index) {
+    var slides = document.querySelectorAll('.banner-grid__slide, .banner__slide');
+    var dots = document.querySelectorAll('.banner-grid__dot, .banner__dot');
+
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+
+    // Quitar active de todos
+    slides.forEach(function (slide) {
+      slide.classList.remove('active');
+    });
+    dots.forEach(function (dot) {
+      dot.classList.remove('active');
+    });
+
+    // Activar el actual
+    if (slides[index]) slides[index].classList.add('active');
+    if (dots[index]) dots[index].classList.add('active');
+
+    currentSlide = index;
+  }
+
+  /**
+   * Siguiente slide
+   */
+  function nextSlide() {
+    goToSlide(currentSlide + 1);
+  }
+
+  /**
+   * Iniciar autoplay del carrusel
+   */
+  function startCarouselAutoplay() {
+    stopCarouselAutoplay();
+    bannerInterval = setInterval(nextSlide, 4000);
+  }
+
+  /**
+   * Detener autoplay del carrusel
+   */
+  function stopCarouselAutoplay() {
+    if (bannerInterval) {
+      clearInterval(bannerInterval);
+      bannerInterval = null;
+    }
+  }
+
+
+  // ==================== CV STATUS (cuando elige archivo) ====================
+  function setupCvStatus() {
+    const input = document.getElementById("applicantCV");
+    if (!input) return;
+
+    input.addEventListener("change", (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      // Cambiar texto del label
+      const labelText = document.querySelector(".file-upload__text");
+      if (labelText) labelText.textContent = file.name;
+
+      showToast("CV seleccionado correctamente", "success");
+    });
+  }
+
+  // Inicializar cuando carga la página
+  document.addEventListener("DOMContentLoaded", function () {
+    setupCvStatus();
+  });
+
+  // Precarga base64 del CV para acceso rápido al submit
+  // (dentro de DOMContentLoaded para evitar null reference en webviews como Instagram)
+  document.addEventListener("DOMContentLoaded", function() {
+    var cvInputEarly = document.getElementById("applicantCV");
+    if (!cvInputEarly) return;
+    cvInputEarly.addEventListener("change", function(e) {
+      var file = e.target.files && e.target.files[0];
+      if (!file) return;
+      window.cvFileName = file.name;
+      var reader = new FileReader();
+      reader.onload = function () {
+        window.cvBase64 = String(reader.result).split("base64,")[1] || "";
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+
+  // ==================== PROGRESS BAR ====================
+
+  /**
+   * Actualiza la barra de progreso basándose en los campos completados
+   */
+  function updateFormProgress() {
+    var steps = document.querySelectorAll('.progress-step');
+    if (steps.length === 0) return;
+
+    // Paso 1: Posiciones seleccionadas (siempre completo cuando se abre el modal)
+    var step1Complete = selectedJobs && selectedJobs.length > 0;
+
+    // Paso 2: Datos personales
+    var nombre = document.getElementById('applicantName');
+    var edad = document.getElementById('applicantAge');
+    var provincia = document.getElementById('applicantProvince');
+    var localidad = document.getElementById('applicantCity');
+    var step2Complete = nombre && nombre.value.trim() !== '' &&
+      edad && edad.value !== '' &&
+      provincia && provincia.value !== '' &&
+      localidad && localidad.value.trim() !== '';
+
+    // Paso 3: Contacto
+    var email = document.getElementById('applicantEmail');
+    var telefono = document.getElementById('applicantPhone');
+    var step3Complete = email && email.value.trim() !== '' &&
+      telefono && telefono.value.trim() !== '';
+
+    // Paso 4: CV
+    var cvInput = document.getElementById('applicantCV');
+    var step4Complete = cvInput && cvInput.files && cvInput.files.length > 0;
+
+    // Determinar el paso activo actual y cuántos están completos
+    var activeStep = 1;
+    var completedSteps = 0;
+
+    if (step1Complete) { activeStep = 2; completedSteps = 1; }
+    if (step1Complete && step2Complete) { activeStep = 3; completedSteps = 2; }
+    if (step1Complete && step2Complete && step3Complete) { activeStep = 4; completedSteps = 3; }
+    if (step1Complete && step2Complete && step3Complete && step4Complete) { completedSteps = 4; }
+
+    // Actualizar clases de los pasos
+    steps.forEach(function (step, index) {
+      var stepNum = index + 1;
+      step.classList.remove('active', 'completed');
+
+      if (stepNum < activeStep) {
+        step.classList.add('completed');
+      } else if (stepNum === activeStep) {
+        step.classList.add('active');
+      }
+
+      // Si es el paso 4 y está completo, marcarlo como completado
+      if (stepNum === 4 && step4Complete) {
+        step.classList.remove('active');
+        step.classList.add('completed');
+      }
+    });
+
+    // Actualizar la línea de progreso verde
+    updateProgressLine(completedSteps, steps);
+  }
+
+  /**
+   * Actualiza la altura de la línea de progreso verde
+   */
+  function updateProgressLine(completedSteps, steps) {
+    var lineFill = document.getElementById('progressLineFill');
+    if (!lineFill || steps.length === 0) return;
+
+    if (completedSteps === 0) {
+      lineFill.style.height = '0px';
+      return;
+    }
+
+    // Calcular la altura basada en la posición de los pasos
+    var stepsContainer = document.querySelector('.progress-steps');
+    if (!stepsContainer) return;
+
+    var firstStep = steps[0];
+    var targetStep = steps[Math.min(completedSteps, steps.length - 1)];
+
+    if (!firstStep || !targetStep) return;
+
+    var containerRect = stepsContainer.getBoundingClientRect();
+    var firstRect = firstStep.querySelector('.progress-step__indicator').getBoundingClientRect();
+    var targetRect = targetStep.querySelector('.progress-step__indicator').getBoundingClientRect();
+
+    // Calcular altura desde el centro del primer paso hasta el centro del paso completado
+    var startY = firstRect.top - containerRect.top + (firstRect.height / 2);
+    var endY = targetRect.top - containerRect.top + (targetRect.height / 2);
+
+    lineFill.style.height = (endY - startY + 16) + 'px';
+  }
+
+  /**
+   * Configura los listeners para actualizar el progreso
+   */
+  function setupProgressListeners() {
+    var formInputs = [
+      'applicantName',
+      'applicantAge',
+      'applicantProvince',
+      'applicantCity',
+      'applicantEmail',
+      'applicantPhone',
+      'applicantCV'
+    ];
+
+    formInputs.forEach(function (inputId) {
+      var input = document.getElementById(inputId);
+      if (input) {
+        input.addEventListener('input', updateFormProgress);
+        input.addEventListener('change', updateFormProgress);
+      }
+    });
+  }
+
+  // Inicializar listeners de progreso cuando carga la página
+  document.addEventListener("DOMContentLoaded", function () {
+    setupProgressListeners();
+  });
+
+  // Actualizar el progreso cuando se abre el modal
+  var originalOpenApplyModal = openApplyModal;
+  openApplyModal = function () {
+    originalOpenApplyModal();
+    // Pequeño delay para asegurar que el modal está visible
+    setTimeout(updateFormProgress, 100);
+  };
+
+</script>
+
+
+</body>
+
+</html>
