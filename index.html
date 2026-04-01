@@ -18,21 +18,37 @@
 
 <body>
 
-  <!-- ==================== INSTAGRAM WEBVIEW BANNER ==================== -->
+  <!-- ==================== WEBVIEW BANNER ==================== -->
   <div id="igWebviewBanner" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:99999;box-sizing:border-box;background:#1a3a52;color:#fff;padding:14px 16px 12px;font-family:Arial,sans-serif;font-size:13px;line-height:1.5;text-align:center;">
     <div style="max-width:480px;margin:0 auto;">
-      <strong style="font-size:14px;display:block;margin-bottom:4px;">⚠️ Esta página no funciona dentro de Instagram</strong>
-      Tocá los <strong>⋮</strong> (tres puntos arriba a la derecha) y seleccioná <strong>"Abrir en Safari"</strong> o <strong>"Abrir en Chrome"</strong>.
+      <strong style="font-size:14px;display:block;margin-bottom:6px;">Para postularte abrí en tu navegador</strong>
+      <a id="openInBrowserBtn" href="#" style="display:inline-block;margin-top:4px;background:#3179a7;color:#fff;font-weight:bold;padding:10px 22px;border-radius:8px;text-decoration:none;font-size:14px;">Abrir en Safari / Chrome</a>
+      <p style="margin:8px 0 0;font-size:11px;opacity:0.8;">O tocá los &#8942; (tres puntos) y elegí "Abrir en navegador"</p>
     </div>
   </div>
   <script>
     (function() {
       var ua = navigator.userAgent || '';
-      if (ua.indexOf('Instagram') !== -1) {
+      var isWebview = ua.indexOf('Instagram') !== -1 || ua.indexOf('FBAN') !== -1 || ua.indexOf('FBAV') !== -1 || ua.indexOf('TikTok') !== -1 || ua.indexOf('musical_ly') !== -1;
+      if (isWebview) {
         var banner = document.getElementById('igWebviewBanner');
         if (banner) {
           banner.style.display = 'block';
-          document.body.style.paddingTop = '80px';
+          document.body.style.paddingTop = '100px';
+        }
+        var btn = document.getElementById('openInBrowserBtn');
+        if (btn) {
+          btn.href = window.location.href;
+          // En iOS intentar abrir con el scheme x-safari
+          btn.addEventListener('click', function(e) {
+            var url = window.location.href;
+            var isIOS = /iPad|iPhone|iPod/.test(ua);
+            if (isIOS) {
+              e.preventDefault();
+              window.location.href = url.replace('https://', 'x-safari-https://');
+              setTimeout(function() { window.open(url, '_blank'); }, 500);
+            }
+          });
         }
       }
     })();
